@@ -4,27 +4,153 @@
  * work well for content-centric websites.
  */
 
+/* 自定义像素字体 */
+@font-face {
+  font-family: 'PixelFont';
+  src: url('/font/FZG_CN.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-heading-font-family: 'PixelFont', system-ui, sans-serif;
+  --ifm-color-primary: #8B5CF6;
+  --ifm-color-primary-dark: #7C3AED;
+  --ifm-color-primary-darker: #6D28D9;
+  --ifm-color-primary-darkest: #5B21B6;
+  --ifm-color-primary-light: #A78BFA;
+  --ifm-color-primary-lighter: #C4B5FD;
+  --ifm-color-primary-lightest: #DDD6FE;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(139, 92, 246, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #A78BFA;
+  --ifm-color-primary-dark: #8B5CF6;
+  --ifm-color-primary-darker: #7C3AED;
+  --ifm-color-primary-darkest: #6D28D9;
+  --ifm-color-primary-light: #C4B5FD;
+  --ifm-color-primary-lighter: #DDD6FE;
+  --ifm-color-primary-lightest: #EDE9FE;
+  --docusaurus-highlighted-code-line-bg: rgba(167, 139, 250, 0.2);
 }
+
+/* ========== 卡片式博客列表样式 ========== */
+
+/* 博客列表页面布局 */
+.blog-list-page main > .container {
+  max-width: 1200px;
+}
+
+/* 隐藏博客列表页左侧侧边栏（仅博客页面） */
+.blog-list-page aside.col.col--3,
+.blog-list-page .col[class*="blogSidebar"] {
+  display: none !important;
+}
+
+/* 博客列表页内容区域扩展 */
+.blog-list-page main .row > .col:first-child {
+  max-width: 100% !important;
+  flex: 1 !important;
+}
+
+/* 博客列表全宽显示 */
+.blog-list-page main > .container > .row {
+  justify-content: center;
+}
+
+.blog-list-page main > .container > .row > .col {
+  max-width: 900px;
+}
+
+/* 博客文章卡片样式 */
+article.margin-bottom--xl {
+  background: var(--ifm-card-background-color, #fff);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+article.margin-bottom--xl:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* 暗色模式卡片样式 */
+[data-theme='dark'] article.margin-bottom--xl {
+  background: var(--ifm-card-background-color, #242526);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] article.margin-bottom--xl:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* 博客标题样式 */
+article.margin-bottom--xl header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+article.margin-bottom--xl header h2 a {
+  color: var(--ifm-heading-color);
+}
+
+article.margin-bottom--xl header h2 a:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* 博客元信息样式 */
+article.margin-bottom--xl .margin-vert--md {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+/* 标签样式美化 */
+article.margin-bottom--xl footer .col a {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  transition: background 0.2s;
+}
+
+article.margin-bottom--xl footer .col a:hover {
+  background: var(--ifm-color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+/* 暗色模式标签 */
+[data-theme='dark'] article.margin-bottom--xl footer .col a {
+  background: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lightest);
+}
+
+/* "阅读更多" 按钮样式 */
+article.margin-bottom--xl footer .col.text--right a {
+  background: var(--ifm-color-primary);
+  color: white !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+article.margin-bottom--xl footer .col.text--right a:hover {
+  background: var(--ifm-color-primary-dark);
+}
+
