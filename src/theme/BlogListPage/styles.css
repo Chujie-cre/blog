@@ -1,0 +1,75 @@
+.blog-grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.blog-grid-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.blog-grid-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blog-grid-header p {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 1200px) {
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-grid-container {
+    padding: 1rem;
+  }
+}
+
+/* 分页器样式 */
+.blog-grid-container nav.pagination-nav {
+  margin-top: 2rem;
+}
+
+.blog-grid-container .pagination-nav__link {
+  border: 2px solid var(--ifm-color-primary);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.blog-grid-container .pagination-nav__link:hover {
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+.blog-grid-container .pagination-nav__label {
+  font-weight: 600;
+}
