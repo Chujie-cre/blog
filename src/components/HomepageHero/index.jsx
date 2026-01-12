@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate, { translate } from '@docusaurus/Translate';
 import GridMotion from '@site/src/components/GridMotion';
 import RotatingText from '@site/src/components/RotatingText';
 import styles from './styles.module.css';
@@ -39,6 +40,37 @@ const gridItems = [
 export default function HomepageHero() {
   const { siteConfig } = useDocusaurusContext();
 
+  const rotatingTexts = useMemo(
+    () => [
+      translate({
+        id: 'homepage.hero.rotating.technology',
+        message: '技术',
+        description: 'Rotating text item: technology',
+      }),
+      translate({
+        id: 'homepage.hero.rotating.creativity',
+        message: '创意',
+        description: 'Rotating text item: creativity',
+      }),
+      translate({
+        id: 'homepage.hero.rotating.inspiration',
+        message: '灵感',
+        description: 'Rotating text item: inspiration',
+      }),
+      translate({
+        id: 'homepage.hero.rotating.future',
+        message: '未来',
+        description: 'Rotating text item: future',
+      }),
+      translate({
+        id: 'homepage.hero.rotating.possibility',
+        message: '可能',
+        description: 'Rotating text item: possibility',
+      }),
+    ],
+    []
+  );
+
   return (
     <section className={styles.hero}>
       <div className={styles.leftCol}>
@@ -47,12 +79,16 @@ export default function HomepageHero() {
       <div className={styles.rightCol}>
         <h1 className={styles.title}>{siteConfig.title}</h1>
         <p className={styles.subtitle}>{siteConfig.tagline}</p>
-        
+
         <div className={styles.exploreSection}>
           <div className={styles.rotatingTextWrap}>
-            <span className={styles.staticText}>探索</span>
+            <span className={styles.staticText}>
+              <Translate id="homepage.hero.explore.label" description="Static explore label">
+                探索
+              </Translate>
+            </span>
             <RotatingText
-              texts={['技术', '创意', '灵感', '未来', '可能']}
+              texts={rotatingTexts}
               mainClassName={styles.rotatingText}
               staggerFrom="last"
               staggerDuration={0.025}
@@ -60,18 +96,27 @@ export default function HomepageHero() {
             />
           </div>
           <p className={styles.exploreDescription}>
-            在这里发现更多精彩内容，探索无限可能
+            <Translate
+              id="homepage.hero.explore.description"
+              description="Short description under the rotating text"
+            >
+              在这里发现更多精彩内容，探索无限可能
+            </Translate>
           </p>
         </div>
-        
+
         <div className={styles.buttons}>
           <Link className={styles.primaryBtn} to="/docs/intro">
             <span className={styles.btnIcon}>🚀</span>
-            开始探索
+            <Translate id="homepage.hero.cta.primary" description="Primary CTA button">
+              开始探索
+            </Translate>
           </Link>
           <Link className={styles.secondaryBtn} to="/blog">
             <span className={styles.btnIcon}>📝</span>
-            阅读博客
+            <Translate id="homepage.hero.cta.secondary" description="Secondary CTA button">
+              阅读博客
+            </Translate>
           </Link>
         </div>
       </div>

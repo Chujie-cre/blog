@@ -1,121 +1,122 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import Translate, { translate } from '@docusaurus/Translate';
 import ChromaGrid from '@site/src/components/ChromaGrid';
 import RotatingText from '@site/src/components/RotatingText';
 import FlowingMenu from '@site/src/components/FlowingMenu';
 import styles from './styles.module.css';
 
-const gridItems = [
-  {
-    image: '/img/blog-1.svg',
-    title: '开始使用',
-    subtitle: '快速入门指南',
-    handle: '教程',
-    borderColor: '#8B5CF6',
-    gradient: 'linear-gradient(145deg, #8B5CF6, #000)',
-    url: '/docs/intro'
-  },
-  {
-    image: '/img/blog-2.svg',
-    title: '博客文章',
-    subtitle: '技术分享与笔记',
-    handle: '博客',
-    borderColor: '#3B82F6',
-    gradient: 'linear-gradient(210deg, #3B82F6, #000)',
-    url: '/blog'
-  },
-  {
-    image: '/img/blog-3.svg',
-    title: '标签分类',
-    subtitle: '按标签浏览内容',
-    handle: '标签',
-    borderColor: '#EC4899',
-    gradient: 'linear-gradient(165deg, #EC4899, #000)',
-    url: '/blog/tags'
-  },
-  {
-    image: '/img/blog-4.svg',
-    title: '归档',
-    subtitle: '按时间浏览文章',
-    handle: '归档',
-    borderColor: '#10B981',
-    gradient: 'linear-gradient(195deg, #10B981, #000)',
-    url: '/blog/archive'
-  },
-  {
-    image: '/img/blog-5.svg',
-    title: '文档',
-    subtitle: '详细文档与教程',
-    handle: '文档',
-    borderColor: '#F59E0B',
-    gradient: 'linear-gradient(225deg, #F59E0B, #000)',
-    url: '/docs/intro'
-  },
-  {
-    image: '/img/blog-6.svg',
-    title: '关于',
-    subtitle: '了解更多',
-    handle: '关于',
-    borderColor: '#06B6D4',
-    gradient: 'linear-gradient(135deg, #06B6D4, #000)',
-    url: '/docs/intro'
-  },
-  {
-    image: '/img/blog-1.svg',
-    title: '社区',
-    subtitle: '加入讨论交流',
-    handle: '社区',
-    borderColor: '#8B5CF6',
-    gradient: 'linear-gradient(145deg, #8B5CF6, #000)',
-    url: '/blog'
-  },
-  {
-    image: '/img/blog-2.svg',
-    title: '项目',
-    subtitle: '开源项目展示',
-    handle: '项目',
-    borderColor: '#3B82F6',
-    gradient: 'linear-gradient(210deg, #3B82F6, #000)',
-    url: '/docs/intro'
-  },
-  {
-    image: '/img/blog-3.svg',
-    title: '工具',
-    subtitle: '实用工具推荐',
-    handle: '工具',
-    borderColor: '#EC4899',
-    gradient: 'linear-gradient(165deg, #EC4899, #000)',
-    url: '/blog'
-  },
-  {
-    image: '/img/blog-4.svg',
-    title: '资源',
-    subtitle: '学习资源分享',
-    handle: '资源',
-    borderColor: '#10B981',
-    gradient: 'linear-gradient(195deg, #10B981, #000)',
-    url: '/docs/intro'
-  },
-  {
-    image: '/img/blog-5.svg',
-    title: '联系',
-    subtitle: '合作与交流',
-    handle: '联系',
-    borderColor: '#F59E0B',
-    gradient: 'linear-gradient(225deg, #F59E0B, #000)',
-    url: '/blog'
-  },
-  {
-    image: '/img/blog-6.svg',
-    title: '支持',
-    subtitle: '支持我的创作',
-    handle: '支持',
-    borderColor: '#06B6D4',
-    gradient: 'linear-gradient(135deg, #06B6D4, #000)',
-    url: '/docs/intro'
-  }
-];
-
 export default function HomepageLinks() {
+  const gridItems = useMemo(() => [
+    {
+      image: '/img/blog-1.svg',
+      title: translate({ id: 'homepage.links.card.start.title', message: '开始使用', description: 'Homepage card title: Getting started' }),
+      subtitle: translate({ id: 'homepage.links.card.start.subtitle', message: '快速入门指南', description: 'Homepage card subtitle: Quick start' }),
+      handle: translate({ id: 'homepage.links.card.start.handle', message: '教程', description: 'Homepage card badge: tutorials' }),
+      borderColor: '#8B5CF6',
+      gradient: 'linear-gradient(145deg, #8B5CF6, #000)',
+      url: '/docs/intro'
+    },
+    {
+      image: '/img/blog-2.svg',
+      title: translate({ id: 'homepage.links.card.blog.title', message: '博客文章', description: 'Homepage card title: blog posts' }),
+      subtitle: translate({ id: 'homepage.links.card.blog.subtitle', message: '技术分享与笔记', description: 'Homepage card subtitle: blog summary' }),
+      handle: translate({ id: 'homepage.links.card.blog.handle', message: '博客', description: 'Homepage card badge: blog' }),
+      borderColor: '#3B82F6',
+      gradient: 'linear-gradient(210deg, #3B82F6, #000)',
+      url: '/blog'
+    },
+    {
+      image: '/img/blog-3.svg',
+      title: translate({ id: 'homepage.links.card.tags.title', message: '标签分类', description: 'Homepage card title: tags' }),
+      subtitle: translate({ id: 'homepage.links.card.tags.subtitle', message: '按标签浏览内容', description: 'Homepage card subtitle: browse by tags' }),
+      handle: translate({ id: 'homepage.links.card.tags.handle', message: '标签', description: 'Homepage card badge: tags' }),
+      borderColor: '#EC4899',
+      gradient: 'linear-gradient(165deg, #EC4899, #000)',
+      url: '/blog/tags'
+    },
+    {
+      image: '/img/blog-4.svg',
+      title: translate({ id: 'homepage.links.card.archive.title', message: '归档', description: 'Homepage card title: archive' }),
+      subtitle: translate({ id: 'homepage.links.card.archive.subtitle', message: '按时间浏览文章', description: 'Homepage card subtitle: browse archive' }),
+      handle: translate({ id: 'homepage.links.card.archive.handle', message: '归档', description: 'Homepage card badge: archive' }),
+      borderColor: '#10B981',
+      gradient: 'linear-gradient(195deg, #10B981, #000)',
+      url: '/blog/archive'
+    },
+    {
+      image: '/img/blog-5.svg',
+      title: translate({ id: 'homepage.links.card.docs.title', message: '文档', description: 'Homepage card title: docs' }),
+      subtitle: translate({ id: 'homepage.links.card.docs.subtitle', message: '详细文档与教程', description: 'Homepage card subtitle: docs' }),
+      handle: translate({ id: 'homepage.links.card.docs.handle', message: '文档', description: 'Homepage card badge: docs' }),
+      borderColor: '#F59E0B',
+      gradient: 'linear-gradient(225deg, #F59E0B, #000)',
+      url: '/docs/intro'
+    },
+    {
+      image: '/img/blog-6.svg',
+      title: translate({ id: 'homepage.links.card.about.title', message: '关于', description: 'Homepage card title: about' }),
+      subtitle: translate({ id: 'homepage.links.card.about.subtitle', message: '了解更多', description: 'Homepage card subtitle: about' }),
+      handle: translate({ id: 'homepage.links.card.about.handle', message: '关于', description: 'Homepage card badge: about' }),
+      borderColor: '#06B6D4',
+      gradient: 'linear-gradient(135deg, #06B6D4, #000)',
+      url: '/docs/intro'
+    },
+    {
+      image: '/img/blog-1.svg',
+      title: translate({ id: 'homepage.links.card.community.title', message: '社区', description: 'Homepage card title: community' }),
+      subtitle: translate({ id: 'homepage.links.card.community.subtitle', message: '加入讨论交流', description: 'Homepage card subtitle: community' }),
+      handle: translate({ id: 'homepage.links.card.community.handle', message: '社区', description: 'Homepage card badge: community' }),
+      borderColor: '#8B5CF6',
+      gradient: 'linear-gradient(145deg, #8B5CF6, #000)',
+      url: '/blog'
+    },
+    {
+      image: '/img/blog-2.svg',
+      title: translate({ id: 'homepage.links.card.projects.title', message: '项目', description: 'Homepage card title: projects' }),
+      subtitle: translate({ id: 'homepage.links.card.projects.subtitle', message: '开源项目展示', description: 'Homepage card subtitle: projects' }),
+      handle: translate({ id: 'homepage.links.card.projects.handle', message: '项目', description: 'Homepage card badge: projects' }),
+      borderColor: '#3B82F6',
+      gradient: 'linear-gradient(210deg, #3B82F6, #000)',
+      url: '/docs/intro'
+    },
+    {
+      image: '/img/blog-3.svg',
+      title: translate({ id: 'homepage.links.card.tools.title', message: '工具', description: 'Homepage card title: tools' }),
+      subtitle: translate({ id: 'homepage.links.card.tools.subtitle', message: '实用工具推荐', description: 'Homepage card subtitle: tools' }),
+      handle: translate({ id: 'homepage.links.card.tools.handle', message: '工具', description: 'Homepage card badge: tools' }),
+      borderColor: '#EC4899',
+      gradient: 'linear-gradient(165deg, #EC4899, #000)',
+      url: '/blog'
+    },
+    {
+      image: '/img/blog-4.svg',
+      title: translate({ id: 'homepage.links.card.resources.title', message: '资源', description: 'Homepage card title: resources' }),
+      subtitle: translate({ id: 'homepage.links.card.resources.subtitle', message: '学习资源分享', description: 'Homepage card subtitle: resources' }),
+      handle: translate({ id: 'homepage.links.card.resources.handle', message: '资源', description: 'Homepage card badge: resources' }),
+      borderColor: '#10B981',
+      gradient: 'linear-gradient(195deg, #10B981, #000)',
+      url: '/docs/intro'
+    },
+    {
+      image: '/img/blog-5.svg',
+      title: translate({ id: 'homepage.links.card.contact.title', message: '联系', description: 'Homepage card title: contact' }),
+      subtitle: translate({ id: 'homepage.links.card.contact.subtitle', message: '合作与交流', description: 'Homepage card subtitle: contact' }),
+      handle: translate({ id: 'homepage.links.card.contact.handle', message: '联系', description: 'Homepage card badge: contact' }),
+      borderColor: '#F59E0B',
+      gradient: 'linear-gradient(225deg, #F59E0B, #000)',
+      url: '/blog'
+    },
+    {
+      image: '/img/blog-6.svg',
+      title: translate({ id: 'homepage.links.card.support.title', message: '支持', description: 'Homepage card title: support' }),
+      subtitle: translate({ id: 'homepage.links.card.support.subtitle', message: '支持我的创作', description: 'Homepage card subtitle: support' }),
+      handle: translate({ id: 'homepage.links.card.support.handle', message: '支持', description: 'Homepage card badge: support' }),
+      borderColor: '#06B6D4',
+      gradient: 'linear-gradient(135deg, #06B6D4, #000)',
+      url: '/docs/intro'
+    }
+  ], []);
+
   useEffect(() => {
     // 简单的本地存储访问量统计
     const updateVisitorCount = () => {
@@ -169,15 +170,27 @@ export default function HomepageLinks() {
         <div className={styles.statsGrid}>
           <a href="https://afdian.com/a/CJKing" target="_blank" rel="noopener noreferrer" className={styles.statItem}>
             <div className={styles.statIcon}>☕</div>
-            <div className={styles.statLabel}>爱发电赞助</div>
+            <div className={styles.statLabel}>
+              <Translate id="homepage.links.stats.sponsor" description="Stat label for sponsor link">
+                爱发电赞助
+              </Translate>
+            </div>
           </a>
           <div className={styles.statItem} onClick={() => document.getElementById('contactForm').style.display = document.getElementById('contactForm').style.display === 'block' ? 'none' : 'block'}>
             <div className={styles.statIcon}>📧</div>
-            <div className={styles.statLabel}>合作联系</div>
+            <div className={styles.statLabel}>
+              <Translate id="homepage.links.stats.contact" description="Stat label for contact toggler">
+                合作联系
+              </Translate>
+            </div>
           </div>
           <div className={styles.statItem}>
             <div className={styles.statNumber} id="visitorCount">0</div>
-            <div className={styles.statLabel}>网站访问量</div>
+            <div className={styles.statLabel}>
+              <Translate id="homepage.links.stats.visitors" description="Stat label for visitor count">
+                网站访问量
+              </Translate>
+            </div>
           </div>
         </div>
 
@@ -216,19 +229,23 @@ export default function HomepageLinks() {
               <input 
                 type="email" 
                 name="email" 
-                placeholder="输入您的邮箱"
+                placeholder={translate({ id: 'homepage.links.form.email.placeholder', message: '输入您的邮箱', description: 'Contact form email placeholder' })}
                 className={styles.emailInput}
                 required 
               />
               <textarea 
                 name="message" 
-                placeholder="请简述您的合作需求..."
+                placeholder={translate({ id: 'homepage.links.form.message.placeholder', message: '请简述您的合作需求...', description: 'Contact form message placeholder' })}
                 className={styles.messageInput}
                 rows="3"
                 required
               />
             </div>
-            <button type="submit" className={styles.submitBtn}>发送</button>
+            <button type="submit" className={styles.submitBtn}>
+              <Translate id="homepage.links.form.submit" description="Contact form submit button">
+                发送
+              </Translate>
+            </button>
           </form>
         </div>
 
@@ -237,22 +254,22 @@ export default function HomepageLinks() {
             items={[
               { 
                 link: '/blog', 
-                text: '专注前端技术分享', 
+                text: translate({ id: 'homepage.links.flowing.item1', message: '专注前端技术分享', description: 'Flowing menu item text 1' }),
                 image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop'
               },
               { 
                 link: '/docs/intro', 
-                text: '系统化学习路径', 
+                text: translate({ id: 'homepage.links.flowing.item2', message: '系统化学习路径', description: 'Flowing menu item text 2' }),
                 image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop'
               },
               { 
                 link: '/blog', 
-                text: '最新技术趋势跟踪', 
+                text: translate({ id: 'homepage.links.flowing.item3', message: '最新技术趋势跟踪', description: 'Flowing menu item text 3' }),
                 image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop'
               },
               { 
                 link: '/docs/intro', 
-                text: '实战项目经验分享', 
+                text: translate({ id: 'homepage.links.flowing.item4', message: '实战项目经验分享', description: 'Flowing menu item text 4' }),
                 image: 'https://images.unsplash.com/photo-1526925712469-a935c1f2b55f?w=600&h=400&fit=crop'
               }
             ]}
@@ -268,11 +285,15 @@ export default function HomepageLinks() {
         <div className={styles.actionButtons}>
           <a href="/blog" className={styles.actionBtn}>
             <span className={styles.btnIcon}>📖</span>
-            浏览文章
+            <Translate id="homepage.links.actions.blog" description="Action button to browse articles">
+              浏览文章
+            </Translate>
           </a>
           <a href="/docs/intro" className={styles.actionBtn}>
             <span className={styles.btnIcon}>🎓</span>
-            学习教程
+            <Translate id="homepage.links.actions.docs" description="Action button to study docs">
+              学习教程
+            </Translate>
           </a>
         </div>
       </div>
