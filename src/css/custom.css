@@ -104,11 +104,11 @@
   max-width: 1200px;
 }
 
-/* 隐藏博客列表页左侧侧边栏（仅博客列表页面） */
+/* 隐藏博客列表页左侧侧边栏（仅博客列表页面）
 .blog-list-page aside.col.col--3,
 .blog-list-page .col[class*="blogSidebar"] {
   display: none !important;
-}
+} */
 
 /* 博客列表页内容区域扩展（仅博客列表页面） */
 .blog-list-page main .row > .col:first-child {
@@ -265,12 +265,11 @@ html, body {
   max-width: 100vw;
 }
 
-.main-wrapper {
+.home .main-wrapper {
   overflow-x: hidden;
 }
 
 /* 确保所有容器不超出视口 */
 .container {
   max-width: 100%;
-  overflow-x: hidden;
 }
