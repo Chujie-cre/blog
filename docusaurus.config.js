@@ -10,9 +10,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: '我的网站',
-  tagline: '记录技术与生活',
-  favicon: 'img/favicon.ico',
+  title: 'Simple Code',
+  tagline: '技术分享与总结',
+  favicon: '/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -44,6 +44,20 @@ const config = {
     },
   },
 
+  themes: [
+    // 暂时禁用搜索插件以修复keymap错误
+    // [
+    //   require.resolve("@easyops-cn/docusaurus-search-local"),
+    //   /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+    //   ({
+    //     hashed: true,
+    //     language: ["zh", "en"],
+    //     highlightSearchTermsOnTargetPage: true,
+    //     explicitSearchResultPath: true,
+    //   }),
+    // ],
+  ],
+
   presets: [
     [
       'classic',
@@ -66,10 +80,17 @@ const config = {
           tagsBasePath: 'tags',
           archiveBasePath: 'archive',
           showReadingTime: true,
+          sortPosts: 'descending',
+          truncateMarker: /<!--\s*(truncate)\s*-->/,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
+            title: 'Simple Code 博客',
+            description: '技术分享与总结',
+            copyright: `Copyright © ${new Date().getFullYear()} Simple Code.`,
+            language: 'zh-Hans',
           },
+          editUrl: 'https://github.com/your-username/your-repo/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -81,6 +102,7 @@ const config = {
     ],
   ],
 
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -90,11 +112,12 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: '我的网站',
+        title: 'Simple Code',
         logo: {
           alt: '网站Logo',
-          src: 'img/logo.svg',
+          src: 'favicon.svg',
         },
+        hideOnScroll: true,
         items: [
           {
             type: 'docSidebar',
@@ -103,6 +126,13 @@ const config = {
             label: '教程',
           },
           {to: '/blog', label: '博客', position: 'left'},
+          {to: '/blog/archive', label: '归档', position: 'left'},
+          {to: '/blog/tags', label: '标签', position: 'left'},
+          // 暂时移除搜索组件以修复插件错误
+          // {
+          //   type: 'search',
+          //   position: 'right',
+          // },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -110,6 +140,10 @@ const config = {
           },
           {
             type: 'localeDropdown',
+            position: 'right',
+          },
+          {
+            type: 'custom-menuButton',
             position: 'right',
           },
         ],
@@ -123,6 +157,27 @@ const config = {
               {
                 label: '教程',
                 to: '/docs/intro',
+              },
+              {
+                label: 'API参考',
+                to: '/docs/category/api',
+              },
+            ],
+          },
+          {
+            title: '内容',
+            items: [
+              {
+                label: '博客',
+                to: '/blog',
+              },
+              {
+                label: '归档',
+                to: '/blog/archive',
+              },
+              {
+                label: '标签',
+                to: '/blog/tags',
               },
             ],
           },
