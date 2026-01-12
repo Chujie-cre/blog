@@ -62,7 +62,7 @@ export default function BlogListPageWrapper(props) {
           {filteredItems.map(({ content: BlogPostContent }) => {
             const { metadata: postMetadata } = BlogPostContent;
             const { title, description, frontMatter, date, tags, readingTime, permalink } = postMetadata;
-            const image = frontMatter.image || '/img/docusaurus.png';
+            const image = frontMatter.image || '/blog/hero_img/fishing.png';
             const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
               year: 'numeric',
               month: 'short',
