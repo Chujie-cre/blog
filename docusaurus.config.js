@@ -68,7 +68,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/Chujie-cre/blog/tree/main/',
         },
         blog: {
           routeBasePath: 'blog',
@@ -90,7 +90,7 @@ const config = {
             copyright: `Copyright © ${new Date().getFullYear()} Simple Code.`,
             language: 'zh-Hans',
           },
-          editUrl: 'https://github.com/your-username/your-repo/tree/main/',
+          editUrl: 'https://github.com/Chujie-cre/blog/tree/main/',
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -134,7 +134,7 @@ const config = {
           //   position: 'right',
           // },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Chujie-cre/blog',
             label: 'GitHub',
             position: 'right',
           },
@@ -207,7 +207,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/Chujie-cre/blog',
               },
             ],
           },
