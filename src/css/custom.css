@@ -4,9 +4,36 @@
  * work well for content-centric websites.
  */
 
-/* 自定义像素字体 */
+/* 庞门正道标题体 - 主标题字体 */
 @font-face {
-  font-family: 'PixelFont';
+  font-family: 'PangMenZhengDao';
+  src: url('/font/庞门正道标题体.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 优设标题黑 - 副标题字体 */
+@font-face {
+  font-family: 'YouSheTitleHei';
+  src: url('/font/优设标题黑.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 站酷小薇LOGO体 - 装饰字体 */
+@font-face {
+  font-family: 'ZhanKuXiaoWei';
+  src: url('/font/站酷小薇LOGO体.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 方正字体 - 正文字体 */
+@font-face {
+  font-family: 'FangZheng';
   src: url('/font/FZG_CN.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -15,7 +42,11 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-heading-font-family: 'PixelFont', system-ui, sans-serif;
+  --ifm-heading-font-family: 'PangMenZhengDao', 'YouSheTitleHei', system-ui, sans-serif;
+  --ifm-font-family-base: 'FangZheng', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-title: 'PangMenZhengDao', sans-serif;
+  --font-family-subtitle: 'YouSheTitleHei', sans-serif;
+  --font-family-decorative: 'ZhanKuXiaoWei', sans-serif;
   --ifm-color-primary: #8B5CF6;
   --ifm-color-primary-dark: #7C3AED;
   --ifm-color-primary-darker: #6D28D9;
@@ -39,6 +70,33 @@
   --docusaurus-highlighted-code-line-bg: rgba(167, 139, 250, 0.2);
 }
 
+/* 导航栏左右分色背景 */
+.navbar {
+  background: linear-gradient(
+    to right,
+    var(--ifm-navbar-background-color) 0%,
+    var(--ifm-navbar-background-color) 50%,
+    #8B5CF6 50%,
+    #8B5CF6 100%
+  ) !important;
+  border-bottom: none !important;
+}
+
+[data-theme='dark'] .navbar {
+  background: linear-gradient(
+    to right,
+    #8B5CF6 0%,
+    #8B5CF6 50%,
+    var(--ifm-navbar-background-color) 50%,
+    var(--ifm-navbar-background-color) 100%
+  ) !important;
+}
+
+/* 导航栏 logo 暗色模式反色 */
+[data-theme='dark'] .navbar__logo img {
+  filter: invert(1);
+}
+
 /* ========== 卡片式博客列表样式 ========== */
 
 /* 博客列表页面布局 */
@@ -46,19 +104,19 @@
   max-width: 1200px;
 }
 
-/* 隐藏博客列表页左侧侧边栏（仅博客页面） */
+/* 隐藏博客列表页左侧侧边栏（仅博客列表页面） */
 .blog-list-page aside.col.col--3,
 .blog-list-page .col[class*="blogSidebar"] {
   display: none !important;
 }
 
-/* 博客列表页内容区域扩展 */
+/* 博客列表页内容区域扩展（仅博客列表页面） */
 .blog-list-page main .row > .col:first-child {
   max-width: 100% !important;
   flex: 1 !important;
 }
 
-/* 博客列表全宽显示 */
+/* 博客列表全宽显示（仅博客列表页面） */
 .blog-list-page main > .container > .row {
   justify-content: center;
 }
@@ -154,3 +212,65 @@ article.margin-bottom--xl footer .col.text--right a:hover {
   background: var(--ifm-color-primary-dark);
 }
 
+/* ========== 导航栏菜单按钮样式 ========== */
+.staggered-menu-wrapper {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+
+.sm-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1.5px solid var(--ifm-color-emphasis-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--ifm-navbar-link-color) !important;
+  transition: all 0.2s ease;
+}
+
+.sm-toggle:hover {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-primary);
+}
+
+.sm-toggle-textWrap {
+  display: none !important;
+}
+
+.sm-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.sm-icon-line {
+  background: currentColor;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.sm-prelayers,
+.staggered-menu-panel {
+  position: fixed;
+}
+
+/* 防止横向滚动条 */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.main-wrapper {
+  overflow-x: hidden;
+}
+
+/* 确保所有容器不超出视口 */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
