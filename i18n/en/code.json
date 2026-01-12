@@ -325,5 +325,233 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "homepage.hero.rotating.technology": {
+    "message": "Technology",
+    "description": "Rotating text item: technology"
+  },
+  "homepage.hero.rotating.creativity": {
+    "message": "Creativity",
+    "description": "Rotating text item: creativity"
+  },
+  "homepage.hero.rotating.inspiration": {
+    "message": "Inspiration",
+    "description": "Rotating text item: inspiration"
+  },
+  "homepage.hero.rotating.future": {
+    "message": "Future",
+    "description": "Rotating text item: future"
+  },
+  "homepage.hero.rotating.possibility": {
+    "message": "Possibilities",
+    "description": "Rotating text item: possibility"
+  },
+  "homepage.hero.explore.label": {
+    "message": "Explore",
+    "description": "Static explore label"
+  },
+  "homepage.hero.explore.description": {
+    "message": "Discover amazing content and explore infinite possibilities here",
+    "description": "Short description under the rotating text"
+  },
+  "homepage.hero.cta.primary": {
+    "message": "Get Started",
+    "description": "Primary CTA button"
+  },
+  "homepage.hero.cta.secondary": {
+    "message": "Read Blog",
+    "description": "Secondary CTA button"
+  },
+  "homepage.links.card.start.title": {
+    "message": "Get Started",
+    "description": "Homepage card title: Getting started"
+  },
+  "homepage.links.card.start.subtitle": {
+    "message": "Quick start guide",
+    "description": "Homepage card subtitle: Quick start"
+  },
+  "homepage.links.card.start.handle": {
+    "message": "Tutorial",
+    "description": "Homepage card badge: tutorials"
+  },
+  "homepage.links.card.blog.title": {
+    "message": "Blog Posts",
+    "description": "Homepage card title: blog posts"
+  },
+  "homepage.links.card.blog.subtitle": {
+    "message": "Tech sharing & notes",
+    "description": "Homepage card subtitle: blog summary"
+  },
+  "homepage.links.card.blog.handle": {
+    "message": "Blog",
+    "description": "Homepage card badge: blog"
+  },
+  "homepage.links.card.tags.title": {
+    "message": "Tags",
+    "description": "Homepage card title: tags"
+  },
+  "homepage.links.card.tags.subtitle": {
+    "message": "Browse content by tags",
+    "description": "Homepage card subtitle: browse by tags"
+  },
+  "homepage.links.card.tags.handle": {
+    "message": "Tags",
+    "description": "Homepage card badge: tags"
+  },
+  "homepage.links.card.archive.title": {
+    "message": "Archive",
+    "description": "Homepage card title: archive"
+  },
+  "homepage.links.card.archive.subtitle": {
+    "message": "Browse posts by time",
+    "description": "Homepage card subtitle: browse archive"
+  },
+  "homepage.links.card.archive.handle": {
+    "message": "Archive",
+    "description": "Homepage card badge: archive"
+  },
+  "homepage.links.card.docs.title": {
+    "message": "Documentation",
+    "description": "Homepage card title: docs"
+  },
+  "homepage.links.card.docs.subtitle": {
+    "message": "Detailed docs & tutorials",
+    "description": "Homepage card subtitle: docs"
+  },
+  "homepage.links.card.docs.handle": {
+    "message": "Docs",
+    "description": "Homepage card badge: docs"
+  },
+  "homepage.links.card.about.title": {
+    "message": "About",
+    "description": "Homepage card title: about"
+  },
+  "homepage.links.card.about.subtitle": {
+    "message": "Learn more",
+    "description": "Homepage card subtitle: about"
+  },
+  "homepage.links.card.about.handle": {
+    "message": "About",
+    "description": "Homepage card badge: about"
+  },
+  "homepage.links.card.community.title": {
+    "message": "Community",
+    "description": "Homepage card title: community"
+  },
+  "homepage.links.card.community.subtitle": {
+    "message": "Join discussions",
+    "description": "Homepage card subtitle: community"
+  },
+  "homepage.links.card.community.handle": {
+    "message": "Community",
+    "description": "Homepage card badge: community"
+  },
+  "homepage.links.card.projects.title": {
+    "message": "Projects",
+    "description": "Homepage card title: projects"
+  },
+  "homepage.links.card.projects.subtitle": {
+    "message": "Open source projects",
+    "description": "Homepage card subtitle: projects"
+  },
+  "homepage.links.card.projects.handle": {
+    "message": "Projects",
+    "description": "Homepage card badge: projects"
+  },
+  "homepage.links.card.tools.title": {
+    "message": "Tools",
+    "description": "Homepage card title: tools"
+  },
+  "homepage.links.card.tools.subtitle": {
+    "message": "Useful tool recommendations",
+    "description": "Homepage card subtitle: tools"
+  },
+  "homepage.links.card.tools.handle": {
+    "message": "Tools",
+    "description": "Homepage card badge: tools"
+  },
+  "homepage.links.card.resources.title": {
+    "message": "Resources",
+    "description": "Homepage card title: resources"
+  },
+  "homepage.links.card.resources.subtitle": {
+    "message": "Learning resources sharing",
+    "description": "Homepage card subtitle: resources"
+  },
+  "homepage.links.card.resources.handle": {
+    "message": "Resources",
+    "description": "Homepage card badge: resources"
+  },
+  "homepage.links.card.contact.title": {
+    "message": "Contact",
+    "description": "Homepage card title: contact"
+  },
+  "homepage.links.card.contact.subtitle": {
+    "message": "Collaboration & communication",
+    "description": "Homepage card subtitle: contact"
+  },
+  "homepage.links.card.contact.handle": {
+    "message": "Contact",
+    "description": "Homepage card badge: contact"
+  },
+  "homepage.links.card.support.title": {
+    "message": "Support",
+    "description": "Homepage card title: support"
+  },
+  "homepage.links.card.support.subtitle": {
+    "message": "Support my creation",
+    "description": "Homepage card subtitle: support"
+  },
+  "homepage.links.card.support.handle": {
+    "message": "Support",
+    "description": "Homepage card badge: support"
+  },
+  "homepage.links.stats.sponsor": {
+    "message": "Sponsor via Afdian",
+    "description": "Stat label for sponsor link"
+  },
+  "homepage.links.stats.contact": {
+    "message": "Business Contact",
+    "description": "Stat label for contact toggler"
+  },
+  "homepage.links.stats.visitors": {
+    "message": "Website Visitors",
+    "description": "Stat label for visitor count"
+  },
+  "homepage.links.form.email.placeholder": {
+    "message": "Enter your email",
+    "description": "Contact form email placeholder"
+  },
+  "homepage.links.form.message.placeholder": {
+    "message": "Please briefly describe your collaboration needs...",
+    "description": "Contact form message placeholder"
+  },
+  "homepage.links.form.submit": {
+    "message": "Send",
+    "description": "Contact form submit button"
+  },
+  "homepage.links.flowing.item1": {
+    "message": "Frontend Technology Focus",
+    "description": "Flowing menu item text 1"
+  },
+  "homepage.links.flowing.item2": {
+    "message": "Systematic Learning Path",
+    "description": "Flowing menu item text 2"
+  },
+  "homepage.links.flowing.item3": {
+    "message": "Latest Tech Trends Tracking",
+    "description": "Flowing menu item text 3"
+  },
+  "homepage.links.flowing.item4": {
+    "message": "Practical Project Experience Sharing",
+    "description": "Flowing menu item text 4"
+  },
+  "homepage.links.actions.blog": {
+    "message": "Browse Articles",
+    "description": "Action button to browse articles"
+  },
+  "homepage.links.actions.docs": {
+    "message": "Study Tutorials",
+    "description": "Action button to study docs"
   }
 }
