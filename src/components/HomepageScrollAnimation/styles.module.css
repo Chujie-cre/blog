@@ -1,0 +1,5 @@
+.scrollAnimation {
+  padding: 3rem 0;
+  overflow: hidden;
+  background: var(--ifm-background-color);
+}
