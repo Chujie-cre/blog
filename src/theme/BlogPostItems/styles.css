@@ -1,0 +1,35 @@
+/* 标签页博客网格布局 - 一排两个更宽的卡片 */
+.tags-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1200px) {
+  .tags-blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tags-blog-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 1rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .tags-blog-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+}
