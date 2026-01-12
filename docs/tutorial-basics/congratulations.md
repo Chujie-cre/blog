@@ -2,22 +2,22 @@
 sidebar_position: 6
 ---
 
-# Congratulations!
+# 恭喜完成基础教程！
 
-You have just learned the **basics of Docusaurus** and made some changes to the **initial template**.
+你已经掌握了 **Docusaurus 的基本用法**，并成功改动了**初始模板**。
 
-Docusaurus has **much more to offer**!
+当然，Docusaurus 还能做得更多！
 
-Have **5 more minutes**? Take a look at **[versioning](../tutorial-extras/manage-docs-versions.md)** and **[i18n](../tutorial-extras/translate-your-site.md)**.
+还有 **5 分钟**？不妨看看 **[版本管理](../tutorial-extras/manage-docs-versions.md)** 和 **[国际化](../tutorial-extras/translate-your-site.md)**。
 
-Anything **unclear** or **buggy** in this tutorial? [Please report it!](https://github.com/facebook/docusaurus/discussions/4610)
+本教程中有任何不清楚或疑似 bug 的地方？[欢迎反馈](https://github.com/facebook/docusaurus/discussions/4610)！
 
-## What's next?
+## 接下来可以做什么？
 
-- Read the [official documentation](https://docusaurus.io/)
-- Modify your site configuration with [`docusaurus.config.js`](https://docusaurus.io/docs/api/docusaurus-config)
-- Add navbar and footer items with [`themeConfig`](https://docusaurus.io/docs/api/themes/configuration)
-- Add a custom [Design and Layout](https://docusaurus.io/docs/styling-layout)
-- Add a [search bar](https://docusaurus.io/docs/search)
-- Find inspirations in the [Docusaurus showcase](https://docusaurus.io/showcase)
-- Get involved in the [Docusaurus Community](https://docusaurus.io/community/support)
+- 阅读 [官方文档](https://docusaurus.io/)
+- 通过 [`docusaurus.config.js`](https://docusaurus.io/docs/api/docusaurus-config) 自定义站点配置
+- 使用 [`themeConfig`](https://docusaurus.io/docs/api/themes/configuration) 添加导航栏和页脚项
+- 自定义 [设计与布局](https://docusaurus.io/docs/styling-layout)
+- 集成 [站内搜索](https://docusaurus.io/docs/search)
+- 从 [Docusaurus 展示墙](https://docusaurus.io/showcase) 获取灵感
+- 加入 [Docusaurus 社区](https://docusaurus.io/community/support)

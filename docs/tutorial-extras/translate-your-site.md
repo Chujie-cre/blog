@@ -2,13 +2,13 @@
 sidebar_position: 2
 ---
 
-# Translate your site
+# 翻译你的网站
 
-Let's translate `docs/intro.md` to French.
+下面以把 `docs/intro.md` 翻译成法文为例。
 
-## Configure i18n
+## 配置 i18n
 
-Modify `docusaurus.config.js` to add support for the `fr` locale:
+在 `docusaurus.config.js` 中新增 `fr` 语言：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -19,9 +19,9 @@ export default {
 };
 ```
 
-## Translate a doc
+## 翻译文档
 
-Copy the `docs/intro.md` file to the `i18n/fr` folder:
+把 `docs/intro.md` 复制到 `i18n/fr` 目录：
 
 ```bash
 mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
@@ -29,29 +29,27 @@ mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
 cp docs/intro.md i18n/fr/docusaurus-plugin-content-docs/current/intro.md
 ```
 
-Translate `i18n/fr/docusaurus-plugin-content-docs/current/intro.md` in French.
+然后在 `i18n/fr/docusaurus-plugin-content-docs/current/intro.md` 中写入法文翻译。
 
-## Start your localized site
+## 启动本地化站点
 
-Start your site on the French locale:
+指定法语 locale 启动站点：
 
 ```bash
 npm run start -- --locale fr
 ```
 
-Your localized site is accessible at [http://localhost:3000/fr/](http://localhost:3000/fr/) and the `Getting Started` page is translated.
+本地化站点可通过 [http://localhost:3000/fr/](http://localhost:3000/fr/) 访问，对应页面已被翻译。
 
 :::caution
-
-In development, you can only use one locale at a time.
-
+开发模式下一次只能启用一种语言。
 :::
 
-## Add a Locale Dropdown
+## 添加语言下拉菜单
 
-To navigate seamlessly across languages, add a locale dropdown.
+为了在不同语言之间切换，在导航栏加入语言下拉菜单。
 
-Modify the `docusaurus.config.js` file:
+修改 `docusaurus.config.js`：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -69,19 +67,19 @@ export default {
 };
 ```
 
-The locale dropdown now appears in your navbar:
+保存后，导航栏会显示语言切换下拉菜单：
 
 ![Locale Dropdown](./img/localeDropdown.png)
 
-## Build your localized site
+## 构建本地化站点
 
-Build your site for a specific locale:
+仅构建指定语言：
 
 ```bash
 npm run build -- --locale fr
 ```
 
-Or build your site to include all the locales at once:
+或者一次性构建所有语言版本：
 
 ```bash
 npm run build
