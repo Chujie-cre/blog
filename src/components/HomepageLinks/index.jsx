@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import Translate, { translate } from '@docusaurus/Translate';
 import ChromaGrid from '@site/src/components/ChromaGrid';
 import RotatingText from '@site/src/components/RotatingText';
@@ -113,43 +113,9 @@ export default function HomepageLinks() {
       handle: translate({ id: 'homepage.links.card.support.handle', message: '支持', description: 'Homepage card badge: support' }),
       borderColor: '#06B6D4',
       gradient: 'linear-gradient(135deg, #06B6D4, #000)',
-      url: '/docs/intro'
+      	url: '/docs/intro'
     }
   ], []);
-
-  const [visitorCount, setVisitorCount] = useState('--');
-
-  useEffect(() => {
-    // 等待不蒜子脚本加载并初始化
-    const initBusuanzi = () => {
-      if (typeof window !== 'undefined' && window.busuanzi) {
-        // 强制触发不蒜子更新
-        window.busuanzi.fetch();
-        
-        // 定时检查不蒜子数据
-        const checkCount = () => {
-          const busuanziElement = document.getElementById('busuanzi_value_site_pv');
-          if (busuanziElement && busuanziElement.textContent && busuanziElement.textContent !== '--') {
-            setVisitorCount(busuanziElement.textContent);
-          }
-        };
-        
-        // 立即检查一次
-        setTimeout(checkCount, 500);
-        // 定期检查
-        const interval = setInterval(checkCount, 1000);
-        
-        // 5秒后停止检查
-        setTimeout(() => clearInterval(interval), 5000);
-      } else {
-        // 如果不蒜子还未加载，1秒后重试
-        setTimeout(initBusuanzi, 1000);
-      }
-    };
-
-    // 页面加载后延迟初始化
-    setTimeout(initBusuanzi, 1500);
-  }, []);
 
   return (
     <section className={styles.links}>
@@ -173,19 +139,15 @@ export default function HomepageLinks() {
           </div>
           <div className={styles.statItem}>
             <div className={styles.statNumber}>
-              {visitorCount}
+              <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">--</span>
+              </span>
             </div>
             <div className={styles.statLabel}>
               <Translate id="homepage.links.stats.visitors" description="Stat label for visitor count">
                 网站访问量
               </Translate>
             </div>
-          </div>
-          {/* 隐藏的不蒜子元素用于数据获取 */}
-          <div style={{ display: 'none' }}>
-            <span id="busuanzi_container_site_pv">
-              本站总访问量<span id="busuanzi_value_site_pv">0</span>次
-            </span>
           </div>
         </div>
 
