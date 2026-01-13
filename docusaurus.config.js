@@ -219,6 +219,12 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+  scripts: [
+    {
+      src: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js',
+      async: true,
+    },
+  ],
 };
 
 export default config;

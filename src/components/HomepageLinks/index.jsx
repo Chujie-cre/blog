@@ -117,52 +117,6 @@ export default function HomepageLinks() {
     }
   ], []);
 
-  useEffect(() => {
-    // 简单的本地存储访问量统计
-    const updateVisitorCount = () => {
-      const storageKey = 'simple-code-visitor-count';
-      let count = localStorage.getItem(storageKey);
-      
-      if (!count) {
-        // 初始化访问量为一个基数 + 随机数，让数据看起来更真实
-        count = Math.floor(Math.random() * 1000) + 5000;
-      } else {
-        count = parseInt(count, 10) + Math.floor(Math.random() * 3) + 1;
-      }
-      
-      localStorage.setItem(storageKey, count.toString());
-      
-      const visitorElement = document.getElementById('visitorCount');
-      if (visitorElement) {
-        // 数字动画效果
-        const targetCount = count;
-        const currentCount = parseInt(visitorElement.textContent, 10) || 0;
-        const increment = Math.ceil((targetCount - currentCount) / 20);
-        
-        const animateCount = () => {
-          const current = parseInt(visitorElement.textContent, 10);
-          if (current < targetCount) {
-            visitorElement.textContent = Math.min(current + increment, targetCount);
-            setTimeout(animateCount, 50);
-          }
-        };
-        
-        animateCount();
-      }
-    };
-
-    // 页面加载时更新访问量
-    updateVisitorCount();
-    
-    // 每隔一段时间模拟访问量增长
-    const interval = setInterval(() => {
-      if (Math.random() > 0.7) { // 30% 概率增长
-        updateVisitorCount();
-      }
-    }, 30000); // 每30秒检查一次
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className={styles.links}>
@@ -185,12 +139,16 @@ export default function HomepageLinks() {
             </div>
           </div>
           <div className={styles.statItem}>
-            <div className={styles.statNumber} id="visitorCount">0</div>
-            <div className={styles.statLabel}>
-              <Translate id="homepage.links.stats.visitors" description="Stat label for visitor count">
-                网站访问量
-              </Translate>
-            </div>
+            <span id="busuanzi_container_site_pv" style={{display: 'block'}}>
+              <div className={styles.statNumber}>
+                <span id="busuanzi_value_site_pv">--</span>
+              </div>
+              <div className={styles.statLabel}>
+                <Translate id="homepage.links.stats.visitors" description="Stat label for visitor count">
+                  网站访问量
+                </Translate>
+              </div>
+            </span>
           </div>
         </div>
 
