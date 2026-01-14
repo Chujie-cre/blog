@@ -1,12 +1,12 @@
-yangshun:
-  name: Yangshun Tay
-  title: Ex-Meta Staff Engineer, Co-founder GreatFrontEnd
+chujie:
+  name: 雏结
+  title: 创意新升级
   url: https://linkedin.com/in/yangshun
-  image_url: https://github.com/yangshun.png
+  image_url: https://res.cloudinary.com/dh61ilhsq/image/upload/v1767667431/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251202144736_aemaeb.jpg
   page: true
   socials:
-    x: yangshunz
-    linkedin: yangshun
+    youtube: yangshunz
+    x: yangshun
     github: yangshun
     newsletter: https://www.greatfrontend.com
 

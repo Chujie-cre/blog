@@ -1,0 +1,17 @@
+# 文章难度配置
+# 使用方式: 在博客 frontMatter 中写 difficulty: easy
+
+easy:
+  label: 入门
+  description: 适合初学者，无需特殊背景知识
+  color: "#22c55e"
+
+middle:
+  label: 进阶
+  description: 需要一定基础知识
+  color: "#f59e0b"
+
+hard:
+  label: 高级
+  description: 需要扎实的基础和实践经验
+  color: "#ef4444"

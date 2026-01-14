@@ -1,0 +1,35 @@
+# 前置知识配置
+# 使用方式: 在博客 frontMatter 中写 prerequisites: [javascript, react]
+
+javascript:
+  label: JavaScript 基础
+  description: 需要了解 JavaScript 语法和基本概念
+  url: /
+
+react:
+  label: React 基础
+  description: 需要了解 React 组件和 Hooks
+
+typescript:
+  label: TypeScript
+  description: 需要了解 TypeScript 类型系统
+
+css:
+  label: CSS 基础
+  description: 需要了解 CSS 样式和布局
+
+html:
+  label: HTML 基础
+  description: 需要了解 HTML 结构和语义化
+
+nodejs:
+  label: Node.js
+  description: 需要了解 Node.js 运行时和模块系统
+
+git:
+  label: Git 版本控制
+  description: 需要了解 Git 基本操作
+
+algorithm:
+  label: 算法基础
+  description: 需要了解基本数据结构和算法

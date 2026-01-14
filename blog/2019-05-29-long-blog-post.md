@@ -1,44 +1,46 @@
 ---
-slug: long-blog-post
-title: 超长博客文章
-authors: yangshun
-tags: [你好, docusaurus]
+id: esp32-webrtc-voice
+title: 使用 ESP32 + WebRTC 实现低延迟语音对讲
+description: ESP32 上实现 WebRTC 实时语音通信的完整工程实践
+slug: esp32-webrtc-voice
+date: 2026-01-13
+last_update:
+  date: 2026-01-13
+  author: chujie
+authors: [chujie]
+tags: [ESP32, WebRTC, 嵌入式, 实时音频]
+image: https://res.cloudinary.com/dh61ilhsq/image/upload/v1767949819/esp32_tnrjnp.svg
+sidebar_position: 3
+keywords:
+  - ESP32 WebRTC
+  - 实时对讲
+draft: false
+unlisted: false
+readingTime: true
+toc: true
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+className: blog-embedded
+wrapperClassName: full-width
+pagination_label: ESP32 WebRTC · Part 1
+pagination_prev: null
+pagination_next: esp32-webrtc-part-2
+custom_edit_url: https://github.com/xxx/xxx/edit/main/blog/xxx.md
+metadata:
+  og:type: article
+difficulty: hard
+prerequisites: [javascript, html]
+how:
+  - 理解 WebRTC 在嵌入式设备上的实现原理
+  - 掌握 ESP32 音频采集与播放
+  - 学会搭建信令服务器
+  - 实现低延迟双向语音通信
+hardware:
+  - ESP32-S3
+status: maintained
+series: ESP32 WebRTC
+part: 1
 ---
 
-这里是一篇超长博客文章的摘要，用来演示列表页如何截断内容。
 
-在正文中插入 `<!-- truncate -->` 注释，可以控制列表中展示的长度。
 
-<!-- truncate -->
-
-接下来是一段很长的示例正文，展示分页、滚动以及阅读体验。你可以将它替换为真正的中文内容，或继续保留作为模板。
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet

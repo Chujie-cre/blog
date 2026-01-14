@@ -1,8 +1,14 @@
 ---
-slug: welcome
 title: 欢迎
-authors: [slorber, yangshun]
-tags: [facebook, 你好, docusaurus]
+difficulty: hard
+prerequisites: [javascript, html]
+how:
+  - 理解 WebRTC 实现原理
+  - 掌握 ESP32 音频采集
+  - 学会搭建信令服务器
+last_update:
+  date: 2026-01-13
+  author: chujie
 ---
 
  [Docusaurus 博客功能](https://docusaurus.io/docs/blog) 由 [blog 插件](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog) 提供支持。

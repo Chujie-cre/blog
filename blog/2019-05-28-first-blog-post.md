@@ -1,8 +1,10 @@
 ---
 slug: first-blog-post
 title: 第一篇博客文章
-authors: [slorber, yangshun]
+authors: [slorber]
 tags: [你好, docusaurus]
+difficulty: easy
+prerequisites: [html,css]
 ---
 
 这是一篇占位示例文章，用来演示 Docusaurus 博客的渲染效果、分页以及摘要截断。
