@@ -82,6 +82,17 @@
   border-bottom: none !important;
 }
 
+/* 导航栏标题应用装饰字体 */
+.navbar__title {
+  font-family: var(--font-family-decorative), sans-serif;
+  font-size: 1.25rem;
+}
+
+/* 导航栏链接字体 */
+.navbar__link {
+  font-family: var(--font-family-subtitle), sans-serif;
+}
+
 [data-theme='dark'] .navbar {
   background: linear-gradient(
     to right,
@@ -95,6 +106,23 @@
 /* 导航栏 logo 暗色模式反色 */
 [data-theme='dark'] .navbar__logo img {
   filter: invert(1);
+}
+
+/* 隐藏原有的亮暗色主题切换按钮 */
+.navbar__items button[class*="colorModeToggle"],
+.navbar__items .navbar__item[class*="colorModeToggle"],
+button[class*="toggle_"],
+div[class*="colorModeToggle"] {
+  display: none !important;
+}
+
+/* 导航栏按钮间距加大 */
+.navbar__items .navbar__item {
+  margin: 0 0.25rem;
+}
+
+.navbar__items--right .navbar__item {
+  margin: 0 0.5rem;
 }
 
 /* ========== 卡片式博客列表样式 ========== */

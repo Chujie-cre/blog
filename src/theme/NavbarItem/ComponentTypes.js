@@ -1,34 +1,37 @@
 import ComponentTypes from '@theme-original/NavbarItem/ComponentTypes';
 import React from 'react';
-import StaggeredMenu from '@site/src/components/StaggeredMenu';
+import LinksMenu from '@site/src/components/LinksMenu';
+import FoodThemeToggle from '@site/src/components/FoodThemeToggle';
 
 function MenuButton() {
   return (
-    <StaggeredMenu
-      position="right"
-      colors={['#B19EEF', '#8B5CF6']}
-      accentColor="#8B5CF6"
-      menuButtonColor="var(--ifm-navbar-link-color)"
-      openMenuButtonColor="#000"
-      items={[
-        { label: '首页', link: '/' },
-        { label: '文档', link: '/docs/intro' },
-        { label: '博客', link: '/blog' },
-        { label: '标签', link: '/blog/tags' },
-      ]}
-      socialItems={[
-        { label: 'GitHub', link: 'https://github.com' },
-        { label: 'Twitter', link: 'https://twitter.com' },
-      ]}
-      displaySocials={true}
-      displayItemNumbering={true}
-      isFixed={false}
-      closeOnClickAway={true}
+    <LinksMenu
+      logo="🎯"
+      title="Simple Code"
+      links={{
+        博客: [
+          { label: '主页', link: '/', icon: '🏠' },
+          { label: '博客', link: '/blog', icon: '📝' },
+          { label: '归档', link: '/blog/archive', icon: '📚' },
+          { label: '标签', link: '/blog/tags', icon: '🏷️' },
+        ],
+        应用: [
+          { label: '文档', link: '/docs/intro', icon: '📖' },
+        ],
+        服务: [
+          { label: 'GitHub', link: 'https://github.com/Chujie-cre/blog', icon: '🐙', external: true },
+        ],
+      }}
     />
   );
+}
+
+function ThemeToggle() {
+  return <FoodThemeToggle />;
 }
 
 export default {
   ...ComponentTypes,
   'custom-menuButton': MenuButton,
+  'custom-themeToggle': ThemeToggle,
 };
