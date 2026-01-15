@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import Link from '@docusaurus/Link';
 import { DifficultyBadge } from '@site/src/components/BlogMetaBadges';
+import AuthorCard from '@site/src/components/AuthorCard';
+import HotPosts from '@site/src/components/HotPosts';
 import styles from './styles.module.css';
 
 type BlogPost = {
@@ -123,9 +125,36 @@ export default function BlogArchivePageContent(props: Props): JSX.Element {
         </div>
       </main>
 
-      {/* 右侧边栏 - 30% 预留区 */}
+      {/* 右侧边栏 - 30% */}
       <aside className={styles.archiveSidebar}>
-        {/* 预留给用户放置其他内容 */}
+        {/* 作者卡片 */}
+        <AuthorCard
+          avatar="/me.png"
+          name="Simple Code"
+          subtitle="分享技术与生活"
+          motto="代码改变世界"
+          description="恭喜发现**宝藏**。"
+          socialLinks={[
+            { label: 'GitHub', url: 'https://github.com' },
+            { label: 'Email', url: 'mailto:example@email.com' }
+          ]}
+        />
+        
+        {/* 随机推荐文章 */}
+        <div className={styles.sidebarSection}>
+          <HotPosts
+            posts={[...archive.blogPosts]
+              .sort(() => Math.random() - 0.5)
+              .slice(0, 5)
+              .map(post => ({
+                title: post.metadata.title,
+                description: post.metadata.description,
+                permalink: post.metadata.permalink
+              }))}
+            title="随机推荐"
+            maxCount={5}
+          />
+        </div>
       </aside>
     </div>
   );

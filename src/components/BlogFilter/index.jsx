@@ -1,176 +1,138 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import styles from './styles.module.css';
 
+// 预设的筛选选项
+const PRESET_FILTERS = [
+  { key: 'all', label: '全部', icon: null },
+  { key: 'recent', label: '最新', icon: null },
+  { key: 'random', label: '随机', icon: null },
+];
+
 function BlogFilter({ posts, onFilter, tags = [] }) {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [sortBy, setSortBy] = useState('date'); // date, title, random
-  const [sortOrder, setSortOrder] = useState('desc'); // asc, desc
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [showAllTags, setShowAllTags] = useState(false);
   const [filteredCount, setFilteredCount] = useState(posts.length);
-  const debounceRef = useRef(null);
+  const [randomSeed, setRandomSeed] = useState(Date.now());
 
-  // 搜索输入防抖处理
-  useEffect(() => {
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    
-    debounceRef.current = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300); // 300ms防抖延迟
-    
-    return () => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
-      }
-    };
-  }, [searchTerm]);
+  // 显示的标签数量
+  const visibleTagCount = 8;
+  const visibleTags = showAllTags ? tags : tags.slice(0, visibleTagCount);
+  const hasMoreTags = tags.length > visibleTagCount;
 
-  // 防抖优化的筛选逻辑
+  // 筛选逻辑
   const filteredPosts = useMemo(() => {
     let result = [...posts];
 
-    // 按搜索词筛选 - 使用防抖后的搜索词，支持全文搜索
-    if (debouncedSearchTerm.trim()) {
-      const searchLower = debouncedSearchTerm.toLowerCase().trim();
-      result = result.filter(post => 
-        post.metadata.title.toLowerCase().includes(searchLower) ||
-        post.metadata.description?.toLowerCase().includes(searchLower) ||
-        post.metadata.tags?.some(tag => tag.label.toLowerCase().includes(searchLower)) ||
-        post.content?.toLowerCase().includes(searchLower)
-      );
-    }
-
     // 按标签筛选
-    if (selectedTags.length > 0) {
+    if (selectedTag) {
       result = result.filter(post =>
-        selectedTags.every(selectedTag =>
-          post.metadata.tags?.some(tag => tag.label === selectedTag)
-        )
+        post.metadata.tags?.some(tag => tag.label === selectedTag)
       );
     }
 
-    // 排序优化 - 避免随机排序时的重复计算
-    if (sortBy === 'random') {
-      // 为随机排序生成固定种子，避免每次render都变化
-      result = result.map((post, index) => ({ post, sort: Math.sin(index) }))
-                   .sort((a, b) => sortOrder === 'desc' ? b.sort - a.sort : a.sort - b.sort)
-                   .map(({ post }) => post);
-    } else {
-      result.sort((a, b) => {
-        let compareValue = 0;
-        
-        switch (sortBy) {
-          case 'title':
-            compareValue = a.metadata.title.localeCompare(b.metadata.title, 'zh-CN');
-            break;
-          case 'date':
-            compareValue = new Date(a.metadata.date) - new Date(b.metadata.date);
-            break;
-          default:
-            compareValue = new Date(a.metadata.date) - new Date(b.metadata.date);
-        }
-        
-        return sortOrder === 'desc' ? -compareValue : compareValue;
-      });
+    // 按预设筛选器处理
+    switch (activeFilter) {
+      case 'recent':
+        result.sort((a, b) => new Date(b.metadata.date) - new Date(a.metadata.date));
+        break;
+      case 'random':
+        result = result
+          .map((post, index) => ({ post, sort: Math.sin(index + randomSeed) }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ post }) => post);
+        break;
+      case 'all':
+      default:
+        result.sort((a, b) => new Date(b.metadata.date) - new Date(a.metadata.date));
+        break;
     }
 
     return result;
-  }, [posts, debouncedSearchTerm, selectedTags, sortBy, sortOrder]);
+  }, [posts, selectedTag, activeFilter, randomSeed]);
 
-  // 更新筛选结果 - 添加延迟执行避免阻塞UI
+  // 更新筛选结果
   useEffect(() => {
-    const updateResults = () => {
-      setFilteredCount(filteredPosts.length);
-      onFilter(filteredPosts);
-    };
-    
-    // 使用setTimeout让UI更新优先于筛选计算
-    const timeoutId = setTimeout(updateResults, 0);
-    
-    return () => clearTimeout(timeoutId);
+    setFilteredCount(filteredPosts.length);
+    onFilter(filteredPosts);
   }, [filteredPosts, onFilter]);
 
-  const handleTagToggle = useCallback((tag) => {
-    setSelectedTags(prev =>
-      prev.includes(tag)
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
-    );
+  const handleFilterClick = useCallback((filterKey) => {
+    if (filterKey === 'random') {
+      setRandomSeed(Date.now());
+    }
+    setActiveFilter(filterKey);
+    setSelectedTag(null);
   }, []);
 
-  const clearFilters = () => {
-    setSearchTerm('');
-    setSelectedTags([]);
-    setSortBy('date');
-    setSortOrder('desc');
-  };
+  const handleTagClick = useCallback((tagLabel) => {
+    if (selectedTag === tagLabel) {
+      setSelectedTag(null);
+    } else {
+      setSelectedTag(tagLabel);
+      setActiveFilter('all');
+    }
+  }, [selectedTag]);
 
   return (
-    <div className={styles.filterContainer}>
-      <div className={styles.filterHeader}>
-        <div className={styles.searchBar}>
-          <input
-            type="text"
-            placeholder="搜索博客文章..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className={styles.searchInput}
-          />
-          <span className={styles.searchIcon}>🔍</span>
-        </div>
-        
-        <div className={styles.sortControls}>
-          <select 
-            value={sortBy} 
-            onChange={(e) => setSortBy(e.target.value)}
-            className={styles.sortSelect}
-          >
-            <option value="date">按日期</option>
-            <option value="title">按标题</option>
-            <option value="random">随机排序</option>
-          </select>
-          
-          <button
-            onClick={() => setSortOrder(prev => prev === 'desc' ? 'asc' : 'desc')}
-            className={styles.sortOrderBtn}
-            title={sortOrder === 'desc' ? '降序' : '升序'}
-          >
-            {sortOrder === 'desc' ? '↓' : '↑'}
-          </button>
-        </div>
-      </div>
-
-      <div className={styles.filterTags}>
-        <div className={styles.tagLabel}>标签筛选：</div>
-        <div className={styles.tagList}>
-          {tags.map(tag => (
+    <div className={styles.filterBar}>
+      <div className={styles.filterInner}>
+        {/* 预设筛选器 */}
+        <div className={styles.presetFilters}>
+          {PRESET_FILTERS.map(filter => (
             <button
-              key={tag.label}
-              onClick={() => handleTagToggle(tag.label)}
-              className={`${styles.tagBtn} ${
-                selectedTags.includes(tag.label) ? styles.tagBtnActive : ''
+              key={filter.key}
+              onClick={() => handleFilterClick(filter.key)}
+              className={`${styles.filterBtn} ${
+                activeFilter === filter.key && !selectedTag ? styles.filterBtnActive : ''
               }`}
             >
-              {tag.label} ({tag.count})
+              {filter.label}
             </button>
           ))}
         </div>
-        
-        {(searchTerm || selectedTags.length > 0) && (
-          <button onClick={clearFilters} className={styles.clearBtn}>
-            清除筛选
-          </button>
-        )}
-      </div>
 
-      <div className={styles.filterStats}>
-        共找到 {posts.length} 篇文章
-        {(searchTerm || selectedTags.length > 0) && (
-          <span className={styles.filteredCount}>
-            （筛选后显示 {filteredCount} 篇）
-          </span>
+        {/* 分隔线 */}
+        <div className={styles.divider} />
+
+        {/* 标签列表 */}
+        <div className={styles.tagFilters}>
+          {visibleTags.map(tag => (
+            <button
+              key={tag.label}
+              onClick={() => handleTagClick(tag.label)}
+              className={`${styles.tagBtn} ${
+                selectedTag === tag.label ? styles.tagBtnActive : ''
+              }`}
+            >
+              {tag.label}
+            </button>
+          ))}
+          
+          {hasMoreTags && (
+            <button
+              onClick={() => setShowAllTags(!showAllTags)}
+              className={styles.moreBtn}
+            >
+              {showAllTags ? '收起' : '更多'}
+              <span className={styles.moreIcon}>{showAllTags ? '«' : '»'}</span>
+            </button>
+          )}
+        </div>
+
+        {/* 筛选结果提示 */}
+        {selectedTag && (
+          <div className={styles.filterInfo}>
+            <span className={styles.filterInfoText}>
+              {filteredCount} 篇
+            </span>
+            <button 
+              onClick={() => setSelectedTag(null)} 
+              className={styles.clearBtn}
+            >
+              ×
+            </button>
+          </div>
         )}
       </div>
     </div>

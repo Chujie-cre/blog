@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, { translate } from '@docusaurus/Translate';
 import GridMotion from '@site/src/components/GridMotion';
 import RotatingText from '@site/src/components/RotatingText';
+import { Rocket, BookOpen } from 'lucide-react';
 import styles from './styles.module.css';
 
 const gridItems = [
@@ -107,13 +108,13 @@ export default function HomepageHero() {
 
         <div className={styles.buttons}>
           <Link className={styles.primaryBtn} to="/docs/intro">
-            <span className={styles.btnIcon}>🚀</span>
+            <Rocket size={20} className={styles.btnIcon} />
             <Translate id="homepage.hero.cta.primary" description="Primary CTA button">
               开始探索
             </Translate>
           </Link>
           <Link className={styles.secondaryBtn} to="/blog">
-            <span className={styles.btnIcon}>📝</span>
+            <BookOpen size={20} className={styles.btnIcon} />
             <Translate id="homepage.hero.cta.secondary" description="Secondary CTA button">
               阅读博客
             </Translate>
