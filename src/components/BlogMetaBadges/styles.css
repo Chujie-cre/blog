@@ -1,0 +1,418 @@
+/* 难度徽章在标题上方 */
+.blog-difficulty-header {
+  margin-bottom: 1.5rem;
+}
+
+/* 元数据区块在正文最前面 */
+.blog-post-meta-section {
+  margin-bottom: 1.5rem;
+}
+
+.blog-meta-badges {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.blog-meta-badges.layout-vertical {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blog-meta-badges.layout-horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* 漫画风格难度选择器 */
+.comic-radio-group {
+  --bg: #ffd700;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+
+  display: flex;
+  position: relative;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 3px solid var(--text-dark);
+  box-shadow: 5px 5px 0px var(--text-dark);
+  overflow: hidden;
+  width: fit-content;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.comic-radio-group input {
+  display: none;
+}
+
+.comic-radio-group label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  font-size: 16px;
+  padding: 0.5rem 1rem;
+  cursor: default;
+  letter-spacing: 1px;
+  color: var(--text-dark);
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease-in-out;
+  text-shadow:
+    -1px -1px 0 var(--text-light),
+    1px -1px 0 var(--text-light),
+    -1px 1px 0 var(--text-light),
+    1px 1px 0 var(--text-light);
+}
+
+.comic-radio-group input:checked + label {
+  color: var(--text-light);
+  text-shadow:
+    -2px -2px 0 var(--text-dark),
+    2px -2px 0 var(--text-dark),
+    -2px 2px 0 var(--text-dark),
+    2px 2px 0 var(--text-dark);
+}
+
+.comic-glider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(100% / 3);
+  border-radius: 8px;
+  z-index: 1;
+  transition:
+    transform 0.5s cubic-bezier(0.37, 1.95, 0.66, 0.56),
+    background 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
+  border-right: 3px solid var(--text-dark);
+  border-left: 3px solid var(--text-dark);
+  transform: translateX(calc(var(--glider-index, 0) * 100%));
+}
+
+/* easy - 绿色 */
+.comic-radio-group.difficulty-easy .comic-glider {
+  background-color: #22c55e;
+  background-image: radial-gradient(
+    circle at 4px 4px,
+    #16a34a 2px,
+    transparent 0
+  );
+  background-size: 8px 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* middle - 橙色 */
+.comic-radio-group.difficulty-middle .comic-glider {
+  background-color: #f59e0b;
+  background-image: radial-gradient(
+    circle at 4px 4px,
+    #d97706 2px,
+    transparent 0
+  );
+  background-size: 8px 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* hard - 红色 */
+.comic-radio-group.difficulty-hard .comic-glider {
+  background-color: #ef4444;
+  background-image: radial-gradient(
+    circle at 4px 4px,
+    #dc2626 2px,
+    transparent 0
+  );
+  background-size: 8px 8px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 小尺寸版本（用于卡片） */
+.comic-radio-group.comic-small {
+  border-width: 2px;
+  box-shadow: 3px 3px 0px var(--text-dark);
+  border-radius: 8px;
+}
+
+.comic-radio-group.comic-small label {
+  min-width: 45px;
+  font-size: 11px;
+  padding: 0.25rem 0.5rem;
+}
+
+.comic-radio-group.comic-small .comic-glider {
+  border-width: 2px;
+}
+
+/* 深色模式调整 */
+[data-theme='dark'] .comic-radio-group {
+  --bg: #4a4a00;
+  box-shadow: 5px 5px 0px #666;
+  border-color: #888;
+}
+
+[data-theme='dark'] .comic-radio-group label {
+  color: #fff;
+  text-shadow:
+    -1px -1px 0 #333,
+    1px -1px 0 #333,
+    -1px 1px 0 #333,
+    1px 1px 0 #333;
+}
+
+[data-theme='dark'] .comic-radio-group input:checked + label {
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+[data-theme='dark'] .comic-glider {
+  border-color: #888;
+}
+
+/* 前置知识徽章 */
+.prerequisites-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.prerequisites-badges.badge-small {
+  gap: 0.35rem;
+}
+
+.prerequisites-label {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+  white-space: nowrap;
+}
+
+.prerequisites-badges.badge-small .prerequisites-label {
+  font-size: 0.7rem;
+}
+
+.prerequisites-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.prerequisite-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.prerequisites-badges.badge-small .prerequisite-badge {
+  padding: 0.1rem 0.35rem;
+  font-size: 0.65rem;
+}
+
+.prerequisite-link:hover {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+}
+
+[data-theme='dark'] .prerequisite-badge {
+  background: var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-900);
+}
+
+[data-theme='dark'] .prerequisite-link:hover {
+  background: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lightest);
+}
+
+/* How Section - 通过本文你将学到 */
+.how-section {
+  margin: 1rem 0 1.5rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, 
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(167, 139, 250, 0.04) 100%
+  );
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.how-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-light) 100%
+  );
+  border-radius: 4px 0 0 4px;
+}
+
+[data-theme='dark'] .how-section {
+  background: linear-gradient(135deg, 
+    rgba(167, 139, 250, 0.12) 0%,
+    rgba(139, 92, 246, 0.06) 100%
+  );
+  border-color: rgba(167, 139, 250, 0.25);
+}
+
+.how-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.how-icon {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 2px 4px rgba(139, 92, 246, 0.3));
+}
+
+.how-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary-darkest);
+  letter-spacing: 0.5px;
+}
+
+[data-theme='dark'] .how-title {
+  color: var(--ifm-color-primary-lightest);
+}
+
+.how-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.how-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-800);
+  line-height: 1.5;
+  transition: all 0.2s ease;
+}
+
+.how-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(4px);
+}
+
+[data-theme='dark'] .how-item {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--ifm-color-emphasis-700);
+}
+
+[data-theme='dark'] .how-item:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.how-item::before {
+  content: "✓";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  background: var(--ifm-color-primary);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Last Update Row - 最后更新信息 */
+.last-update-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  font-size: 0.85rem;
+}
+
+.last-update-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.last-update-icon {
+  font-size: 1rem;
+}
+
+.last-update-text {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.last-update-author {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+.edit-page-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.edit-page-link:hover {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darkest);
+  text-decoration: none;
+}
+
+[data-theme='dark'] .edit-page-link {
+  background: var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .edit-page-link:hover {
+  background: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lightest);
+}
+
+/* 卡片内紧凑样式 */
+.electric-card .blog-meta-badges {
+  margin: 0.5rem 0 0 0;
+}
+
+.electric-card .prerequisites-badges {
+  display: none;
+}
