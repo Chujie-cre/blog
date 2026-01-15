@@ -10,6 +10,7 @@ export default function BlogPostItems({items}: BlogPostItemsProps): JSX.Element 
         const {metadata: postMetadata} = BlogPostContent;
         const {title, description, frontMatter, date, tags, readingTime, permalink} = postMetadata;
         const image = frontMatter.image || '/img/docusaurus.png';
+        const {difficulty, prerequisites} = frontMatter;
         const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
           year: 'numeric',
           month: 'short', 
@@ -26,6 +27,8 @@ export default function BlogPostItems({items}: BlogPostItemsProps): JSX.Element 
             date={formattedDate}
             readingTime={readingTime}
             permalink={permalink}
+            difficulty={difficulty}
+            prerequisites={prerequisites}
           />
         );
       })}

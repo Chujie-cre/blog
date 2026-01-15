@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import ElectricBorder from './ElectricBorder';
+import {DifficultyBadge} from '@site/src/components/BlogMetaBadges';
 import './styles.css';
 
-export default function ElectricCard({ title, description, image, tags, date, readingTime, permalink }) {
+export default function ElectricCard({ title, description, image, tags, date, readingTime, permalink, difficulty, prerequisites }) {
   return (
     <Link to={permalink} className="electric-card-link">
       <ElectricBorder 
@@ -17,6 +18,11 @@ export default function ElectricCard({ title, description, image, tags, date, re
           {image && (
             <div className="electric-card-image">
               <img src={image} alt={title} />
+              {difficulty && (
+                <div className="electric-card-difficulty">
+                  <DifficultyBadge difficulty={difficulty} showLabel={false} size="small" />
+                </div>
+              )}
             </div>
           )}
           <div className="electric-card-body">

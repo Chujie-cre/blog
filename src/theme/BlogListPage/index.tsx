@@ -63,6 +63,7 @@ export default function BlogListPageWrapper(props) {
             const { metadata: postMetadata } = BlogPostContent;
             const { title, description, frontMatter, date, tags, readingTime, permalink } = postMetadata;
             const image = frontMatter.image || '/blog/hero_img/fishing.png';
+            const { difficulty, prerequisites } = frontMatter;
             const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
               year: 'numeric',
               month: 'short',
@@ -79,6 +80,8 @@ export default function BlogListPageWrapper(props) {
                 date={formattedDate}
                 readingTime={readingTime}
                 permalink={permalink}
+                difficulty={difficulty}
+                prerequisites={prerequisites}
               />
             );
           })}
