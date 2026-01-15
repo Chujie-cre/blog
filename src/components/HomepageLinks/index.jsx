@@ -4,6 +4,7 @@ import ChromaGrid from '@site/src/components/ChromaGrid';
 import RotatingText from '@site/src/components/RotatingText';
 import FlowingMenu from '@site/src/components/FlowingMenu';
 import FeedbackModal from '@site/src/components/FeedbackModal';
+import { Coffee, Mail, Eye, BookOpen, GraduationCap } from 'lucide-react';
 import styles from './styles.module.css';
 
 export default function HomepageLinks() {
@@ -46,15 +47,15 @@ export default function HomepageLinks() {
       gradient: 'linear-gradient(195deg, #10B981, #000)',
       url: '/blog/archive'
     },
-    // {
-    //   image: '/img/blog-5.svg',
-    //   title: translate({ id: 'homepage.links.card.docs.title', message: '评价', description: 'Homepage card title: docs' }),
-    //   subtitle: translate({ id: 'homepage.links.card.docs.subtitle', message: '觉得本站怎么样？', description: 'Homepage card subtitle: docs' }),
-    //   handle: translate({ id: 'homepage.links.card.docs.handle', message: '评价', description: 'Homepage card badge: docs' }),
-    //   borderColor: '#F59E0B',
-    //   gradient: 'linear-gradient(225deg, #F59E0B, #000)',
-    //   isFeedback: true
-    // },
+    {
+      image: '/img/blog-5.svg',
+      title: translate({ id: 'homepage.links.card.docs.title', message: '评价', description: 'Homepage card title: docs' }),
+      subtitle: translate({ id: 'homepage.links.card.docs.subtitle', message: '觉得本站怎么样？', description: 'Homepage card subtitle: docs' }),
+      handle: translate({ id: 'homepage.links.card.docs.handle', message: '评价', description: 'Homepage card badge: docs' }),
+      borderColor: '#F59E0B',
+      gradient: 'linear-gradient(225deg, #F59E0B, #000)',
+      isFeedback: true
+    },
     // {
     //   image: '/img/blog-6.svg',
     //   title: translate({ id: 'homepage.links.card.about.title', message: '关于', description: 'Homepage card title: about' }),
@@ -125,7 +126,7 @@ export default function HomepageLinks() {
       <div className={styles.leftCol}>
         <div className={styles.statsGrid}>
           <a href="https://afdian.com/a/CJKing" target="_blank" rel="noopener noreferrer" className={styles.statItem}>
-            <div className={styles.statIcon}>☕</div>
+            <div className={styles.statIcon}><Coffee size={24} /></div>
             <div className={styles.statLabel}>
               <Translate id="homepage.links.stats.sponsor" description="Stat label for sponsor link">
                 爱发电赞助
@@ -133,7 +134,7 @@ export default function HomepageLinks() {
             </div>
           </a>
           <div className={styles.statItem} onClick={() => document.getElementById('contactForm').style.display = document.getElementById('contactForm').style.display === 'block' ? 'none' : 'block'}>
-            <div className={styles.statIcon}>📧</div>
+            <div className={styles.statIcon}><Mail size={24} /></div>
             <div className={styles.statLabel}>
               <Translate id="homepage.links.stats.contact" description="Stat label for contact toggler">
                 合作联系
@@ -244,13 +245,13 @@ export default function HomepageLinks() {
 
         <div className={styles.actionButtons}>
           <a href="/blog" className={styles.actionBtn}>
-            <span className={styles.btnIcon}>📖</span>
+            <BookOpen size={18} className={styles.btnIcon} />
             <Translate id="homepage.links.actions.blog" description="Action button to browse articles">
               浏览文章
             </Translate>
           </a>
           <a href="/docs/intro" className={styles.actionBtn}>
-            <span className={styles.btnIcon}>🎓</span>
+            <GraduationCap size={18} className={styles.btnIcon} />
             <Translate id="homepage.links.actions.docs" description="Action button to study docs">
               学习教程
             </Translate>

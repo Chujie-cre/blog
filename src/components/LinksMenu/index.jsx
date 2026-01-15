@@ -1,25 +1,36 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from '@docusaurus/Link';
+import { Home, FileText, Archive, Tag, BookOpen, Github, Sparkles, MessageCircleHeart } from 'lucide-react';
 import './styles.css';
+
+const iconMap = {
+  Home: Home,
+  FileText: FileText,
+  Archive: Archive,
+  Tag: Tag,
+  BookOpen: BookOpen,
+  Github: Github,
+  MessageCircleHeart: MessageCircleHeart,
+};
 
 const defaultLinks = {
   博客: [
-    { label: '主页', link: '/', icon: '🏠' },
-    { label: '博客', link: '/blog', icon: '📝' },
-    { label: '归档', link: '/blog/archive', icon: '📚' },
-    { label: '标签', link: '/blog/tags', icon: '🏷️' },
+    { label: '主页', link: '/', icon: 'Home' },
+    { label: '博客', link: '/blog', icon: 'FileText' },
+    { label: '归档', link: '/blog/archive', icon: 'Archive' },
+    { label: '标签', link: '/blog/tags', icon: 'Tag' },
   ],
   应用: [
-    { label: '文档', link: '/docs/intro', icon: '📖' },
+    { label: '文档', link: '/docs/intro', icon: 'BookOpen' },
   ],
   服务: [
-    { label: 'GitHub', link: 'https://github.com/Chujie-cre/blog', icon: '🐙', external: true },
+    { label: 'GitHub', link: 'https://github.com/Chujie-cre/blog', icon: 'Github', external: true },
   ],
 };
 
 export default function LinksMenu({ 
   links = defaultLinks,
-  logo = '🎯',
+  logo = 'MessageCircleHeart',
   title = 'Menu'
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +61,9 @@ export default function LinksMenu({
       {isOpen && (
         <div className="links-menu-dropdown">
           <div className="links-menu-header">
-            <span className="links-menu-logo">{logo}</span>
+            <span className="links-menu-logo">
+              {iconMap[logo] ? React.createElement(iconMap[logo], { size: 24 }) : logo}
+            </span>
             <span className="links-menu-title">{title}</span>
           </div>
           
@@ -59,8 +72,9 @@ export default function LinksMenu({
               <div key={category} className="links-menu-category">
                 <div className="links-menu-category-title">{category}</div>
                 <div className="links-menu-items">
-                  {items.map((item, index) => (
-                    item.external ? (
+                  {items.map((item, index) => {
+                    const IconComponent = iconMap[item.icon];
+                    return item.external ? (
                       <a
                         key={index}
                         href={item.link}
@@ -69,7 +83,9 @@ export default function LinksMenu({
                         className="links-menu-item"
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="links-menu-item-icon">{item.icon}</span>
+                        <span className="links-menu-item-icon">
+                          {IconComponent ? <IconComponent size={18} /> : item.icon}
+                        </span>
                         <span className="links-menu-item-label">{item.label}</span>
                       </a>
                     ) : (
@@ -79,18 +95,20 @@ export default function LinksMenu({
                         className="links-menu-item"
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="links-menu-item-icon">{item.icon}</span>
+                        <span className="links-menu-item-icon">
+                          {IconComponent ? <IconComponent size={18} /> : item.icon}
+                        </span>
                         <span className="links-menu-item-label">{item.label}</span>
                       </Link>
-                    )
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ))}
           </div>
 
           <div className="links-menu-footer">
-            <span className="links-menu-footer-icon">🌟</span>
+            <Sparkles size={16} className="links-menu-footer-icon" />
             <span>更多我的项目</span>
           </div>
         </div>
