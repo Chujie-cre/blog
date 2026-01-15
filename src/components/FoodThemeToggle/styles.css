@@ -1,0 +1,288 @@
+/* --- MAIN SWITCH CONTAINER --- */
+.switch-food {
+  --w: 80px;
+  --h: 40px;
+  --knob-size: 34px;
+  --offset: 3px;
+  --bg-burger: #ffecd2;
+  --bg-fries: #ac95ef;
+
+  position: relative;
+  display: inline-block;
+  width: var(--w);
+  height: var(--h);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
+.switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* The Background Track */
+.switch-track {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  border: 2px solid #333;
+  border-radius: 40px;
+  transition: background-color 0.4s;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .switch-track {
+  background-color: #1a1a1a;
+}
+
+/* The Moving Knob Wrapper */
+.switch-knob {
+  position: absolute;
+  top: var(--offset);
+  left: var(--offset);
+  width: var(--knob-size);
+  height: var(--knob-size);
+  transition: transform 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===========================
+   1. THE BURGER (2D DOODLE)
+   =========================== */
+.burger-container {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.4s ease,
+    opacity 0.3s ease;
+  z-index: 2;
+}
+
+.bun-top {
+  width: 24px;
+  height: 11px;
+  background: #ffa64d;
+  border: 1.5px solid #333;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  position: relative;
+  z-index: 4;
+}
+
+.seeds {
+  position: absolute;
+  width: 1.5px;
+  height: 1.5px;
+  background: #333;
+  top: 4px;
+  left: 7px;
+  box-shadow:
+    8px 0 #333,
+    4px 3px #333;
+  border-radius: 50%;
+}
+
+.lettuce {
+  width: 28px;
+  height: 4px;
+  background: #8cd65e;
+  border: 1.5px solid #333;
+  border-radius: 7px;
+  margin-top: -1px;
+  z-index: 3;
+}
+
+.patty {
+  width: 24px;
+  height: 5px;
+  background: #8b4513;
+  border: 1.5px solid #333;
+  border-radius: 3px;
+  margin-top: -1px;
+  z-index: 2;
+}
+
+.bun-bottom {
+  width: 24px;
+  height: 7px;
+  background: #ffa64d;
+  border: 1.5px solid #333;
+  border-radius: 0 0 7px 7px;
+  margin-top: -1px;
+  z-index: 1;
+}
+
+/* ===========================
+   2. THE FRIES (3D)
+   =========================== */
+.fries-container {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  perspective: 400px;
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    transform 0.4s ease,
+    opacity 0.3s ease;
+  z-index: 1;
+}
+
+.fry-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(30deg);
+}
+
+/* The Red Box Faces */
+.box-face {
+  position: absolute;
+  border: 1.5px solid #333;
+  background: #ff4757;
+  backface-visibility: visible;
+}
+
+.box-face.front {
+  width: 20px;
+  height: 24px;
+  transform: translateZ(10px);
+  left: 4px;
+  top: 4px;
+}
+
+.box-face.back {
+  width: 20px;
+  height: 24px;
+  transform: rotateY(180deg) translateZ(10px);
+  left: 4px;
+  top: 4px;
+}
+
+.box-face.right {
+  width: 20px;
+  height: 24px;
+  transform: rotateY(90deg) translateZ(10px);
+  left: 4px;
+  top: 4px;
+}
+
+.box-face.left {
+  width: 20px;
+  height: 24px;
+  transform: rotateY(-90deg) translateZ(10px);
+  left: 4px;
+  top: 4px;
+}
+
+.box-face.bottom {
+  width: 20px;
+  height: 20px;
+  transform: rotateX(-90deg) translateZ(20px);
+  left: 4px;
+}
+
+/* The Yellow Fries sticking out */
+.fry {
+  position: absolute;
+  width: 4px;
+  height: 16px;
+  background: #ffd32a;
+  border: 1.5px solid #333;
+  top: -6px;
+  transform-origin: bottom;
+  border-radius: 1.5px;
+}
+
+/* Positioning all the fries */
+.fry.f1 {
+  left: 6px;
+  transform: translateZ(7px) rotateZ(-10deg);
+}
+
+.fry.f2 {
+  left: 11px;
+  transform: translateZ(4px) rotateZ(0deg);
+  height: 22px;
+  top: -12px;
+}
+
+.fry.f3 {
+  left: 9px;
+  transform: translateZ(-3px) rotateZ(8deg);
+}
+
+.fry.f4 {
+  left: 15px;
+  transform: translateZ(7px) rotateZ(10deg);
+  height: 13px;
+}
+
+.fry.f5 {
+  left: 6px;
+  transform: translateZ(-5px) rotateZ(-15deg);
+  height: 19px;
+  top: -8px;
+}
+
+.fry.f6 {
+  left: 17px;
+  transform: translateZ(0px) rotateZ(5deg);
+  height: 16px;
+}
+
+.fry.f7 {
+  left: 10px;
+  transform: translateZ(8px) rotateZ(-5deg);
+  height: 18px;
+  top: -5px;
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+
+.switch-input:checked ~ .switch-track .switch-knob {
+  transform: translateX(
+    calc(var(--w) - var(--knob-size) - (var(--offset) * 2))
+  );
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch-input:checked ~ .switch-track .burger-container {
+  opacity: 0;
+  transform: scale(0) rotate(-90deg);
+}
+
+.switch-input:checked ~ .switch-track .fries-container {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.switch-input:checked ~ .switch-track .fry-box {
+  animation: spinFries 3s infinite linear;
+}
+
+.switch-input:checked ~ .switch-track {
+  background-color: var(--bg-fries);
+}
+
+@keyframes spinFries {
+  0% {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
