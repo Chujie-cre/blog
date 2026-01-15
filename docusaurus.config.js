@@ -32,9 +32,7 @@ const config = {
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // 多语言配置
   i18n: {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans', 'en'],
@@ -43,6 +41,10 @@ const config = {
       en: { label: 'English' },
     },
   },
+
+  plugins: [
+    './src/plugins/blog-meta-plugin.js',
+  ],
 
   themes: [
     // 暂时禁用搜索插件以修复keymap错误
@@ -123,7 +125,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: '教程',
+            label: '文档',
           },
           {to: '/blog', label: '博客', position: 'left'},
           {to: '/blog/archive', label: '归档', position: 'left'},
@@ -143,6 +145,10 @@ const config = {
             position: 'right',
           },
           {
+            type: 'custom-themeToggle',
+            position: 'right',
+          },
+          {
             type: 'custom-menuButton',
             position: 'right',
           },
@@ -155,7 +161,7 @@ const config = {
             title: '文档',
             items: [
               {
-                label: '教程',
+                label: '文档',
                 to: '/docs/intro',
               },
               {
