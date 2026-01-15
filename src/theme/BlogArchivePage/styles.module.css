@@ -1,7 +1,7 @@
-/* 页面容器 */
+/* 页面容器 - 全宽 */
 .pageContainer {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   padding: 2rem;
 }
 

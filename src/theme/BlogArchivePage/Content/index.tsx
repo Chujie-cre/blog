@@ -1,11 +1,6 @@
-import React from 'react';
-import {
-  useCollapsible,
-  Collapsible,
-} from '@docusaurus/theme-common';
-import Heading from '@theme/Heading';
+import React, { useMemo } from 'react';
 import Link from '@docusaurus/Link';
-import MagicBento from '@site/src/components/MagicBento';
+import { DifficultyBadge } from '@site/src/components/BlogMetaBadges';
 import styles from './styles.module.css';
 
 type BlogPost = {
@@ -19,6 +14,10 @@ type BlogPost = {
       label: string;
     }>;
     readingTime?: number;
+    frontMatter?: {
+      image?: string;
+      difficulty?: string;
+    };
   };
 };
 
@@ -29,87 +28,8 @@ type Props = {
   };
 };
 
-type YearProp = {
-  year: string;
-  posts: BlogPost[];
-};
-
-function YearSection({year, posts}: YearProp): JSX.Element {
-  const {collapsed, toggleCollapsed} = useCollapsible({
-    initialState: false,
-  });
-
-  return (
-    <div className={styles.yearSection}>
-      <div className={styles.yearHeader} onClick={toggleCollapsed}>
-        <Heading as="h2" className={styles.yearTitle}>
-          <span className={styles.yearNumber}>{year}</span>
-          <span className={styles.yearCount}>
-            {posts.length} 篇文章
-          </span>
-        </Heading>
-        <div className={`${styles.yearToggle} ${collapsed ? styles.collapsed : ''}`}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path 
-              d="M6 9l6 6 6-6" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      </div>
-      
-      <Collapsible lazy collapsed={collapsed}>
-        <div className={styles.yearPosts}>
-          {posts.map((post) => (
-            <article key={post.metadata.date} className={styles.postCard}>
-              <div className={styles.postDate}>
-                {new Date(post.metadata.date).toLocaleDateString('zh-CN', {
-                  month: 'short',
-                  day: '2-digit'
-                })}
-              </div>
-              <div className={styles.postContent}>
-                <Heading as="h3" className={styles.postTitle}>
-                  <Link to={post.metadata.permalink} className={styles.postLink}>
-                    {post.metadata.title}
-                  </Link>
-                </Heading>
-                {post.metadata.description && (
-                  <p className={styles.postDescription}>
-                    {post.metadata.description}
-                  </p>
-                )}
-                <div className={styles.postMeta}>
-                  {post.metadata.tags && post.metadata.tags.length > 0 && (
-                    <div className={styles.postTags}>
-                      {post.metadata.tags.map((tag) => (
-                        <Link
-                          key={tag.permalink}
-                          to={tag.permalink}
-                          className={styles.postTag}
-                        >
-                          #{tag.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                  {post.metadata?.readingTime && (
-                    <span className={styles.readingTime}>
-                      约 {Math.ceil(post.metadata.readingTime)} 分钟阅读
-                    </span>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Collapsible>
-    </div>
-  );
-}
+// 默认封面图
+const DEFAULT_IMAGE = '/blog/hero_img/fishing.png';
 
 export default function BlogArchivePageContent(props: Props): JSX.Element {
   const {archive} = props;
@@ -117,23 +37,96 @@ export default function BlogArchivePageContent(props: Props): JSX.Element {
   // 安全检查
   if (!archive || !archive.blogPosts || !archive.blogPosts.length) {
     return (
-      <div className={styles.emptyState}>
+      <div className={styles.archiveEmpty}>
         <p>暂无文章</p>
       </div>
     );
   }
-  
-  // 按日期排序，并转换为MagicBento需要的格式
-  const bentoArticles = archive.blogPosts
-    .sort((a, b) => new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime())
-    .map(post => ({
-      metadata: {
-        ...post.metadata,
-        frontMatter: {
-          image: post.metadata.frontMatter?.image || '/img/docusaurus.png'
-        }
-      }
-    }));
-  
-  return <MagicBento posts={bentoArticles} />;
+
+  // 按年份分组并排序
+  const years = useMemo(() => {
+    const grouped: Record<string, BlogPost[]> = {};
+    archive.blogPosts.forEach(post => {
+      const year = new Date(post.metadata.date).getFullYear().toString();
+      if (!grouped[year]) grouped[year] = [];
+      grouped[year].push(post);
+    });
+    // 每年内按日期降序排序
+    Object.keys(grouped).forEach(year => {
+      grouped[year].sort((a, b) => 
+        new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
+      );
+    });
+    return grouped;
+  }, [archive.blogPosts]);
+
+  const sortedYears = Object.keys(years).sort((a, b) => Number(b) - Number(a));
+
+  return (
+    <div className={styles.archivePage}>
+      {/* 左侧文章列表 - 70% */}
+      <main className={styles.archiveMain}>
+        {/* 页面标题 */}
+        <div className={styles.archiveTitle}>
+          <h1>文章</h1>
+          <span className={styles.archiveTotalCount}>{archive.blogPosts.length}</span>
+        </div>
+
+        {/* 按年份分组的文章列表 */}
+        <div className={styles.archiveYearGroups}>
+          {sortedYears.map((year) => (
+            <div key={year} className={styles.archiveYearGroup}>
+              <h2 className={styles.archiveYearTitle}>{year}</h2>
+              <div className={styles.archivePostList}>
+                {years[year].map((post) => (
+                  <Link
+                    key={post.metadata.permalink}
+                    to={post.metadata.permalink}
+                    className={styles.archivePostItem}
+                  >
+                    {/* 封面图 */}
+                    <div className={styles.archivePostThumb}>
+                      <img 
+                        src={post.metadata.frontMatter?.image || DEFAULT_IMAGE} 
+                        alt={post.metadata.title}
+                        loading="lazy"
+                      />
+                    </div>
+                    
+                    {/* 文章信息 */}
+                    <div className={styles.archivePostInfo}>
+                      <div className={styles.archivePostHeader}>
+                        <h3 className={styles.archivePostTitle}>{post.metadata.title}</h3>
+                        {post.metadata.frontMatter?.difficulty && (
+                          <DifficultyBadge 
+                            difficulty={post.metadata.frontMatter.difficulty} 
+                            showLabel={false} 
+                            size="small" 
+                          />
+                        )}
+                      </div>
+                      {post.metadata.tags && post.metadata.tags.length > 0 && (
+                        <div className={styles.archivePostTags}>
+                          {post.metadata.tags.slice(0, 3).map(tag => (
+                            <span key={tag.label} className={styles.archivePostTag}>
+                              # {tag.label}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+
+      {/* 右侧边栏 - 30% 预留区 */}
+      <aside className={styles.archiveSidebar}>
+        {/* 预留给用户放置其他内容 */}
+      </aside>
+    </div>
+  );
 }
