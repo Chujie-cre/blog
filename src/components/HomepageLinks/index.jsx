@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Translate, { translate } from '@docusaurus/Translate';
 import ChromaGrid from '@site/src/components/ChromaGrid';
 import RotatingText from '@site/src/components/RotatingText';
 import FlowingMenu from '@site/src/components/FlowingMenu';
+import FeedbackModal from '@site/src/components/FeedbackModal';
 import styles from './styles.module.css';
 
 export default function HomepageLinks() {
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  
   const gridItems = useMemo(() => [
     {
       image: '/img/blog-1.svg',
@@ -43,69 +46,69 @@ export default function HomepageLinks() {
       gradient: 'linear-gradient(195deg, #10B981, #000)',
       url: '/blog/archive'
     },
-    {
-      image: '/img/blog-5.svg',
-      title: translate({ id: 'homepage.links.card.docs.title', message: '文档', description: 'Homepage card title: docs' }),
-      subtitle: translate({ id: 'homepage.links.card.docs.subtitle', message: '详细文档与教程', description: 'Homepage card subtitle: docs' }),
-      handle: translate({ id: 'homepage.links.card.docs.handle', message: '文档', description: 'Homepage card badge: docs' }),
-      borderColor: '#F59E0B',
-      gradient: 'linear-gradient(225deg, #F59E0B, #000)',
-      url: '/docs/intro'
-    },
-    {
-      image: '/img/blog-6.svg',
-      title: translate({ id: 'homepage.links.card.about.title', message: '关于', description: 'Homepage card title: about' }),
-      subtitle: translate({ id: 'homepage.links.card.about.subtitle', message: '了解更多', description: 'Homepage card subtitle: about' }),
-      handle: translate({ id: 'homepage.links.card.about.handle', message: '关于', description: 'Homepage card badge: about' }),
-      borderColor: '#06B6D4',
-      gradient: 'linear-gradient(135deg, #06B6D4, #000)',
-      url: '/docs/intro'
-    },
-    {
-      image: '/img/blog-1.svg',
-      title: translate({ id: 'homepage.links.card.community.title', message: '社区', description: 'Homepage card title: community' }),
-      subtitle: translate({ id: 'homepage.links.card.community.subtitle', message: '加入讨论交流', description: 'Homepage card subtitle: community' }),
-      handle: translate({ id: 'homepage.links.card.community.handle', message: '社区', description: 'Homepage card badge: community' }),
-      borderColor: '#8B5CF6',
-      gradient: 'linear-gradient(145deg, #8B5CF6, #000)',
-      url: '/blog'
-    },
-    {
-      image: '/img/blog-2.svg',
-      title: translate({ id: 'homepage.links.card.projects.title', message: '项目', description: 'Homepage card title: projects' }),
-      subtitle: translate({ id: 'homepage.links.card.projects.subtitle', message: '开源项目展示', description: 'Homepage card subtitle: projects' }),
-      handle: translate({ id: 'homepage.links.card.projects.handle', message: '项目', description: 'Homepage card badge: projects' }),
-      borderColor: '#3B82F6',
-      gradient: 'linear-gradient(210deg, #3B82F6, #000)',
-      url: '/docs/intro'
-    },
-    {
-      image: '/img/blog-3.svg',
-      title: translate({ id: 'homepage.links.card.tools.title', message: '工具', description: 'Homepage card title: tools' }),
-      subtitle: translate({ id: 'homepage.links.card.tools.subtitle', message: '实用工具推荐', description: 'Homepage card subtitle: tools' }),
-      handle: translate({ id: 'homepage.links.card.tools.handle', message: '工具', description: 'Homepage card badge: tools' }),
-      borderColor: '#EC4899',
-      gradient: 'linear-gradient(165deg, #EC4899, #000)',
-      url: '/blog'
-    },
-    {
-      image: '/img/blog-4.svg',
-      title: translate({ id: 'homepage.links.card.resources.title', message: '资源', description: 'Homepage card title: resources' }),
-      subtitle: translate({ id: 'homepage.links.card.resources.subtitle', message: '学习资源分享', description: 'Homepage card subtitle: resources' }),
-      handle: translate({ id: 'homepage.links.card.resources.handle', message: '资源', description: 'Homepage card badge: resources' }),
-      borderColor: '#10B981',
-      gradient: 'linear-gradient(195deg, #10B981, #000)',
-      url: '/docs/intro'
-    },
-    {
-      image: '/img/blog-5.svg',
-      title: translate({ id: 'homepage.links.card.contact.title', message: '联系', description: 'Homepage card title: contact' }),
-      subtitle: translate({ id: 'homepage.links.card.contact.subtitle', message: '合作与交流', description: 'Homepage card subtitle: contact' }),
-      handle: translate({ id: 'homepage.links.card.contact.handle', message: '联系', description: 'Homepage card badge: contact' }),
-      borderColor: '#F59E0B',
-      gradient: 'linear-gradient(225deg, #F59E0B, #000)',
-      url: '/blog'
-    },
+    // {
+    //   image: '/img/blog-5.svg',
+    //   title: translate({ id: 'homepage.links.card.docs.title', message: '评价', description: 'Homepage card title: docs' }),
+    //   subtitle: translate({ id: 'homepage.links.card.docs.subtitle', message: '觉得本站怎么样？', description: 'Homepage card subtitle: docs' }),
+    //   handle: translate({ id: 'homepage.links.card.docs.handle', message: '评价', description: 'Homepage card badge: docs' }),
+    //   borderColor: '#F59E0B',
+    //   gradient: 'linear-gradient(225deg, #F59E0B, #000)',
+    //   isFeedback: true
+    // },
+    // {
+    //   image: '/img/blog-6.svg',
+    //   title: translate({ id: 'homepage.links.card.about.title', message: '关于', description: 'Homepage card title: about' }),
+    //   subtitle: translate({ id: 'homepage.links.card.about.subtitle', message: '了解更多', description: 'Homepage card subtitle: about' }),
+    //   handle: translate({ id: 'homepage.links.card.about.handle', message: '关于', description: 'Homepage card badge: about' }),
+    //   borderColor: '#06B6D4',
+    //   gradient: 'linear-gradient(135deg, #06B6D4, #000)',
+    //   url: '/docs/intro'
+    // },
+    // {
+    //   image: '/img/blog-1.svg',
+    //   title: translate({ id: 'homepage.links.card.community.title', message: '社区', description: 'Homepage card title: community' }),
+    //   subtitle: translate({ id: 'homepage.links.card.community.subtitle', message: '加入讨论交流', description: 'Homepage card subtitle: community' }),
+    //   handle: translate({ id: 'homepage.links.card.community.handle', message: '社区', description: 'Homepage card badge: community' }),
+    //   borderColor: '#8B5CF6',
+    //   gradient: 'linear-gradient(145deg, #8B5CF6, #000)',
+    //   url: '/blog'
+    // },
+    // {
+    //   image: '/img/blog-2.svg',
+    //   title: translate({ id: 'homepage.links.card.projects.title', message: '项目', description: 'Homepage card title: projects' }),
+    //   subtitle: translate({ id: 'homepage.links.card.projects.subtitle', message: '开源项目展示', description: 'Homepage card subtitle: projects' }),
+    //   handle: translate({ id: 'homepage.links.card.projects.handle', message: '项目', description: 'Homepage card badge: projects' }),
+    //   borderColor: '#3B82F6',
+    //   gradient: 'linear-gradient(210deg, #3B82F6, #000)',
+    //   url: '/docs/intro'
+    // },
+    // {
+    //   image: '/img/blog-3.svg',
+    //   title: translate({ id: 'homepage.links.card.tools.title', message: '工具', description: 'Homepage card title: tools' }),
+    //   subtitle: translate({ id: 'homepage.links.card.tools.subtitle', message: '实用工具推荐', description: 'Homepage card subtitle: tools' }),
+    //   handle: translate({ id: 'homepage.links.card.tools.handle', message: '工具', description: 'Homepage card badge: tools' }),
+    //   borderColor: '#EC4899',
+    //   gradient: 'linear-gradient(165deg, #EC4899, #000)',
+    //   url: '/blog'
+    // },
+    // {
+    //   image: '/img/blog-4.svg',
+    //   title: translate({ id: 'homepage.links.card.resources.title', message: '资源', description: 'Homepage card title: resources' }),
+    //   subtitle: translate({ id: 'homepage.links.card.resources.subtitle', message: '学习资源分享', description: 'Homepage card subtitle: resources' }),
+    //   handle: translate({ id: 'homepage.links.card.resources.handle', message: '资源', description: 'Homepage card badge: resources' }),
+    //   borderColor: '#10B981',
+    //   gradient: 'linear-gradient(195deg, #10B981, #000)',
+    //   url: '/docs/intro'
+    // },
+    // {
+    //   image: '/img/blog-5.svg',
+    //   title: translate({ id: 'homepage.links.card.contact.title', message: '联系', description: 'Homepage card title: contact' }),
+    //   subtitle: translate({ id: 'homepage.links.card.contact.subtitle', message: '合作与交流', description: 'Homepage card subtitle: contact' }),
+    //   handle: translate({ id: 'homepage.links.card.contact.handle', message: '联系', description: 'Homepage card badge: contact' }),
+    //   borderColor: '#F59E0B',
+    //   gradient: 'linear-gradient(225deg, #F59E0B, #000)',
+    //   url: '/blog'
+    // },
     {
       image: '/img/blog-6.svg',
       title: translate({ id: 'homepage.links.card.support.title', message: '支持', description: 'Homepage card title: support' }),
@@ -255,8 +258,19 @@ export default function HomepageLinks() {
         </div>
       </div>
       <div className={styles.rightCol}>
-        <ChromaGrid items={gridItems} columns={3} rows={4} radius={180} />
+        <ChromaGrid 
+          items={gridItems} 
+          columns={3} 
+          rows={4} 
+          radius={180} 
+          onFeedbackClick={() => setIsFeedbackOpen(true)}
+        />
       </div>
+      
+      <FeedbackModal 
+        isOpen={isFeedbackOpen} 
+        onClose={() => setIsFeedbackOpen(false)} 
+      />
     </section>
   );
 }

@@ -1,6 +1,8 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import './styles.css';
+
+const DEFAULT_IMAGE = '/blog/hero_img/fishing.png';
 
 export const ChromaGrid = ({
   items,
@@ -10,7 +12,8 @@ export const ChromaGrid = ({
   rows = 2,
   damping = 0.45,
   fadeOut = 0.6,
-  ease = 'power3.out'
+  ease = 'power3.out',
+  onFeedbackClick
 }) => {
   const rootRef = useRef(null);
   const fadeRef = useRef(null);
@@ -115,9 +118,13 @@ export const ChromaGrid = ({
     });
   };
 
-  const handleCardClick = url => {
-    if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+  const handleCardClick = (item) => {
+    if (item.isFeedback && onFeedbackClick) {
+      onFeedbackClick();
+    } else if (item.onClick) {
+      item.onClick();
+    } else if (item.url) {
+      window.location.href = item.url;
     }
   };
 
@@ -147,7 +154,7 @@ export const ChromaGrid = ({
           key={i}
           className="chroma-card"
           onMouseMove={handleCardMove}
-          onClick={() => handleCardClick(c.url)}
+          onClick={() => handleCardClick(c)}
           style={{
             '--card-border': c.borderColor || 'transparent',
             '--card-gradient': c.gradient,
@@ -155,7 +162,15 @@ export const ChromaGrid = ({
           }}
         >
           <div className="chroma-img-wrapper">
-            <img src={c.image} alt={c.title} loading="lazy" />
+            <img 
+              src={c.image} 
+              alt={c.title} 
+              loading="lazy"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = DEFAULT_IMAGE;
+              }}
+            />
           </div>
           <footer className="chroma-info">
             <h3 className="name">{c.title}</h3>
