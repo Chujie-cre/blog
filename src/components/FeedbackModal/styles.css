@@ -1,0 +1,141 @@
+.feedback-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.feedback-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.3s ease;
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feedback-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #666;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.feedback-modal-close:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.feedback-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  background: #f9f9f9;
+}
+
+.feedback-modal-icon {
+  font-size: 1.5rem;
+}
+
+.feedback-modal-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.feedback-modal-content {
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.feedback-modal-content iframe {
+  display: block;
+  border: none;
+  width: 640px;
+  height: 450px;
+}
+
+/* 响应式适配 */
+@media (max-width: 700px) {
+  .feedback-modal-content iframe {
+    width: 100%;
+    min-width: 320px;
+  }
+}
+
+/* 深色模式 */
+[data-theme='dark'] .feedback-modal {
+  background: #1e1e1e;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  border-color: #444;
+}
+
+[data-theme='dark'] .feedback-modal-header {
+  background: #2a2a2a;
+  border-color: #444;
+}
+
+[data-theme='dark'] .feedback-modal-title {
+  color: #fff;
+}
+
+[data-theme='dark'] .feedback-modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+}
+
+[data-theme='dark'] .feedback-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+[data-theme='dark'] .feedback-modal-content {
+  background: #1e1e1e;
+}
