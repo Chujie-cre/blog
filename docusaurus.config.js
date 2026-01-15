@@ -1,12 +1,11 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
+// `@type` JSDoc 注解可以为编辑器提供自动补全和类型检查（需要配合 `@ts-check`）
+// Docusaurus 配置有多种等价的声明方式
+// 参考文档: https://docusaurus.io/docs/api/docusaurus-config
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// 此文件运行在 Node.js 环境 - 不要在这里使用客户端代码（浏览器 API、JSX...）
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -14,25 +13,25 @@ const config = {
   tagline: '技术分享与总结',
   favicon: '/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  // 未来版本标志，参考: https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true, // 提前兼容即将发布的 Docusaurus v4
   },
 
-  // Set the production url of your site here
+  // 网站生产环境的 URL（部署后的域名）
   url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  // 网站的基础路径，如果部署在子目录则需要修改
+  // GitHub Pages 部署时通常是 '/<仓库名>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // GitHub Pages 部署配置（如果不使用 GitHub Pages 可以忽略）
+  organizationName: 'facebook', // GitHub 组织名或用户名
+  projectName: 'docusaurus', // GitHub 仓库名
 
+  // 链接检查策略：'throw' 表示检测到无效链接时报错
   onBrokenLinks: 'throw',
 
-  // 多语言配置
+  // 国际化配置（多语言支持）
   i18n: {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans', 'en'],
@@ -42,10 +41,12 @@ const config = {
     },
   },
 
+  // 插件配置：扩展 Docusaurus 功能
   plugins: [
-    './src/plugins/blog-meta-plugin.js',
+    './src/plugins/blog-meta-plugin.js', // 自定义博客元数据插件（difficulty/prerequisites）
   ],
 
+  // 主题配置：可以添加额外主题如搜索
   themes: [
     // 暂时禁用搜索插件以修复keymap错误
     // [
@@ -60,66 +61,69 @@ const config = {
     // ],
   ],
 
+  // 预设配置：classic 预设包含文档、博客、页面、主题等核心功能
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        // ===== 文档配置 =====
         docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/Chujie-cre/blog/tree/main/',
+          sidebarPath: './sidebars.js', // 侧边栏配置文件
+          editUrl: 'https://github.com/Chujie-cre/blog/tree/main/', // “编辑此页”链接
         },
+        // ===== 博客配置 =====
         blog: {
-          routeBasePath: 'blog',
-          blogTitle: '博客',
-          blogDescription: '我的技术博客',
-          postsPerPage: 12,
-          blogSidebarCount: 'ALL',
-          blogSidebarTitle: '全部文章',
-          tagsBasePath: 'tags',
-          archiveBasePath: 'archive',
-          showReadingTime: true,
-          sortPosts: 'descending',
-          truncateMarker: /<!--\s*(truncate)\s*-->/,
+          routeBasePath: 'blog',       // 博客路由前缀，设为 '/' 可作为首页
+          blogTitle: '博客',            // 博客页面标题
+          blogDescription: '我的技术博客', // SEO 描述
+          postsPerPage: 12,            // 每页显示文章数
+          blogSidebarCount: 'ALL',     // 侧边栏显示文章数，'ALL' 表示全部
+          blogSidebarTitle: '全部文章',  // 侧边栏标题
+          tagsBasePath: 'tags',        // 标签页路径
+          archiveBasePath: 'archive',  // 归档页路径
+          showReadingTime: true,       // 显示阅读时间
+          sortPosts: 'descending',     // 文章排序：降序（最新在前）
+          truncateMarker: /<!--\s*(truncate)\s*-->/,  // 摘要截断标记
+          // RSS/Atom 订阅配置
           feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
+            type: ['rss', 'atom'],     // 生成的 feed 类型
+            xslt: true,                // 启用 XSLT 样式
             title: 'Simple Code 博客',
             description: '技术分享与总结',
             copyright: `Copyright © ${new Date().getFullYear()} Simple Code.`,
             language: 'zh-Hans',
           },
-          editUrl: 'https://github.com/Chujie-cre/blog/tree/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          editUrl: 'https://github.com/Chujie-cre/blog/tree/main/', // “编辑此页”链接
+          onInlineTags: 'warn',        // 行内标签警告（建议使用 tags.yml）
+          onInlineAuthors: 'warn',     // 行内作者警告（建议使用 authors.yml）
+          onUntruncatedBlogPosts: 'warn', // 未截断文章警告
         },
+        // ===== 主题配置 =====
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: './src/css/custom.css', // 自定义 CSS 文件
         },
       }),
     ],
   ],
 
 
+  // ===== 主题配置（外观、导航、页脚等） =====
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/docusaurus-social-card.jpg', // 社交分享卡片图片
       colorMode: {
-        respectPrefersColorScheme: true,
+        respectPrefersColorScheme: true, // 跟随系统亮/暗模式
       },
+      // ===== 导航栏配置 =====
       navbar: {
-        title: 'Simple Code',
+        title: 'Simple Code',  // 网站名称
         logo: {
           alt: '网站Logo',
-          src: 'favicon.svg',
+          src: 'favicon.svg',  // Logo 图片路径
         },
-        hideOnScroll: true,
+        hideOnScroll: true,    // 滚动时隐藏导航栏
         items: [
           {
             type: 'docSidebar',
@@ -130,32 +134,30 @@ const config = {
           {to: '/blog', label: '博客', position: 'left'},
           {to: '/blog/archive', label: '归档', position: 'left'},
           {to: '/blog/tags', label: '标签', position: 'left'},
-          // 暂时移除搜索组件以修复插件错误
-          // {
-          //   type: 'search',
-          //   position: 'right',
-          // },
+          // 搜索组件（暂时禁用，需要配置搜索插件后启用）
+          // { type: 'search', position: 'right' },
           {
             href: 'https://github.com/Chujie-cre/blog',
             label: 'GitHub',
             position: 'right',
           },
           {
-            type: 'localeDropdown',
+            type: 'localeDropdown',  // 语言切换下拉框
             position: 'right',
           },
           {
-            type: 'custom-themeToggle',
+            type: 'custom-themeToggle',  // 自定义主题切换按钮
             position: 'right',
           },
           {
-            type: 'custom-menuButton',
+            type: 'custom-menuButton',   // 自定义菜单按钮
             position: 'right',
           },
         ],
       },
+      // ===== 页脚配置 =====
       footer: {
-        style: 'dark',
+        style: 'dark',  // 页脚样式：'dark' 或 'light'
         links: [
           {
             title: '文档',
@@ -220,14 +222,16 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} 我的项目. 基于 Docusaurus 构建.`,
       },
+      // ===== 代码高亮配置 =====
       prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
+        theme: prismThemes.github,      // 亮色主题代码样式
+        darkTheme: prismThemes.dracula, // 暗色主题代码样式
       },
     }),
+  // ===== 外部脚本配置 =====
   scripts: [
     {
-      src: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js',
+      src: '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js', // 不蒜子访问统计
       async: true,
     },
   ],
