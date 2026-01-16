@@ -16,6 +16,10 @@
   --r: 180px;
 }
 
+[data-theme='light'] .chroma-grid {
+  background: #ffffff;
+}
+
 @media (max-width: 1124px) {
   .chroma-grid {
     grid-template-columns: repeat(auto-fit, minmax(180px, 200px));

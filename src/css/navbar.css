@@ -1,0 +1,232 @@
+/* GitHub图标样式 */
+.navbar-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  color: var(--ifm-navbar-link-color);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  margin-right: -0.9rem !important;
+}
+
+.navbar-github-link:hover {
+  background: var(--ifm-color-emphasis-200);
+  text-decoration: none;
+  color: var(--ifm-navbar-link-hover-color);
+}
+
+.navbar-github-link:before {
+  content: '';
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23333' d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
+}
+
+[data-theme='dark'] .navbar-github-link:before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23fff' d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+}
+
+/* 导航栏按钮hover圆角背景效果 */
+.navbar__item > .navbar__link {
+  border-radius: 8px;
+  padding: 6px 12px;
+  transition: all 0.2s ease;
+}
+
+/* 调整GitHub图标和语言切换按钮间距 */
+.navbar__items--right {
+  gap: 0.25rem;
+}
+
+.navbar__items--right .navbar__item {
+  margin-left: 0;
+}
+
+.navbar__item > .navbar__link:hover {
+  background: var(--ifm-color-emphasis-200);
+  text-decoration: none;
+}
+
+/* 暗色主题下的hover效果 */
+[data-theme='dark'] .navbar__item > .navbar__link:hover {
+  background: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .navbar-github-link:hover {
+  background: var(--ifm-color-emphasis-300);
+}
+
+/* 博客下拉菜单样式 - 横向圆角按钮样式 */
+.navbar__item--dropdown .navbar__link--active::after,
+.navbar__item--dropdown .navbar__link:hover::after {
+  display: none;
+}
+
+/* 对博客下拉菜单和语言切换下拉菜单应用横向样式 */
+.dropdown__menu:has(.dropdown__link[href="/blog"]) {
+  border-radius: 20px !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--ifm-color-emphasis-200) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: var(--ifm-background-surface-color) !important;
+  min-width: auto !important;
+  width: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: 100% !important;
+}
+
+/* 博客下拉菜单应用横向样式 */
+.dropdown__menu:has(.dropdown__link[href="/blog"]) {
+  border-radius: 20px !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--ifm-color-emphasis-200) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: var(--ifm-background-surface-color) !important;
+  min-width: auto !important;
+  width: auto !important;
+  max-width: none !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  top: calc(100% - 2px) !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  padding-top: 10px !important;
+}
+
+/* 语言切换下拉框 - 恢复上下排序样式 */
+.dropdown__menu {
+  border-radius: 12px !important;
+  padding: 8px !important;
+  border: 1px solid var(--ifm-color-emphasis-200) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  background: var(--ifm-background-surface-color) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* 确保下拉菜单父元素有足够的点击区域 */
+.navbar__item--dropdown {
+  position: relative;
+}
+
+.navbar__item--dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+/* 对所有下拉菜单中的链接应用样式 */
+.dropdown__menu .dropdown__link {
+  border-radius: 16px !important;
+  padding: 6px 16px !important;
+  margin: 0 !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: var(--ifm-font-color-base) !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* 对所有下拉菜单链接应用美化的hover样式 */
+.dropdown__menu .dropdown__link:hover {
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-light)) !important;
+  color: white !important;
+  text-decoration: none !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(var(--ifm-color-primary-rgb), 0.3) !important;
+}
+
+[data-theme='dark'] .dropdown__menu .dropdown__link:hover {
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-light)) !important;
+  color: black !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(var(--ifm-color-primary-rgb), 0.4) !important;
+}
+
+/* 修复hover状态下图标颜色 */
+.dropdown__menu .dropdown__link:hover:before {
+  filter: brightness(0) invert(1) !important;
+}
+
+[data-theme='dark'] .dropdown__menu .dropdown__link:hover:before {
+  filter: brightness(0) !important;
+}
+
+/* 为每个下拉项添加Lucide图标 - 亮色主题 */
+.dropdown__link[href="/blog"]:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+}
+
+.dropdown__link[href="/blog/archive"]:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 7H4l-.98-.4A2 2 0 0 0 2 6V3c0-.6.4-1 1-1h18c.6 0 1 .4 1 1v3c0 .6-.4 1-1 1z' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M21 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8 10v6' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 10v6' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16 10v6' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+}
+
+.dropdown__link[href="/blog/tags"]:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.59 13.41 13.42 20.58c-.39.39-1.02.39-1.41 0L4 12.5V2h10.5l8.09 8.09c.39.39.39 1.02 0 1.41z' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 7h.01' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+}
+
+/* 暗色主题下的图标 - 白色 */
+[data-theme='dark'] .dropdown__link[href="/blog"]:before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+[data-theme='dark'] .dropdown__link[href="/blog/archive"]:before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 7H4l-.98-.4A2 2 0 0 0 2 6V3c0-.6.4-1 1-1h18c.6 0 1 .4 1 1v3c0 .6-.4 1-1 1z' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M21 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M8 10v6' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 10v6' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16 10v6' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+[data-theme='dark'] .dropdown__link[href="/blog/tags"]:before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.59 13.41 13.42 20.58c-.39.39-1.02.39-1.41 0L4 12.5V2h10.5l8.09 8.09c.39.39.39 1.02 0 1.41z' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M9 7h.01' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* 手机端隐藏亮暗色切换按钮，保留GitHub图标 */
+@media (max-width: 996px) {
+  /* 隐藏食物主题切换按钮 */
+  .switch-food {
+    display: none !important;
+  }
+  
+  /* GitHub图标保留显示 */
+  .navbar-github-link {
+    display: inline-flex !important;
+  }
+}

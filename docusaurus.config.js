@@ -78,7 +78,7 @@ const config = {
           blogTitle: '博客',            // 博客页面标题
           blogDescription: '我的技术博客', // SEO 描述
           postsPerPage: 12,            // 每页显示文章数
-          blogSidebarCount: 'ALL',     // 侧边栏显示文章数，'ALL' 表示全部
+          blogSidebarCount: 0,     // 侧边栏显示文章数，'ALL' 表示全部
           blogSidebarTitle: '全部文章',  // 侧边栏标题
           tagsBasePath: 'tags',        // 标签页路径
           archiveBasePath: 'archive',  // 归档页路径
@@ -131,15 +131,23 @@ const config = {
             position: 'left',
             label: '文档',
           },
-          {to: '/blog', label: '博客', position: 'left'},
-          {to: '/blog/archive', label: '归档', position: 'left'},
-          {to: '/blog/tags', label: '标签', position: 'left'},
+          {
+            type: 'dropdown',
+            label: '博客',
+            position: 'left',
+            items: [
+              {to: '/blog', label: '博客列表'},
+              {to: '/blog/archive', label: '文章归档'},
+              {to: '/blog/tags', label: '标签分类'},
+            ],
+          },
           // 搜索组件（暂时禁用，需要配置搜索插件后启用）
           // { type: 'search', position: 'right' },
           {
             href: 'https://github.com/Chujie-cre/blog',
-            label: 'GitHub',
+            className: 'navbar-github-link',
             position: 'right',
+            'aria-label': 'GitHub repository',
           },
           {
             type: 'localeDropdown',  // 语言切换下拉框
