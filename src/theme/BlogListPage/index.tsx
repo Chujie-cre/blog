@@ -1,7 +1,6 @@
 import React, { useState, useMemo, Suspense, lazy } from 'react';
 import Layout from '@theme/Layout';
 import BlogPostItems from '@theme/BlogPostItems';
-import BlogListPaginator from '@theme/BlogListPaginator';
 import SearchMetadata from '@theme/SearchMetadata';
 import ElectricCard from '@site/src/components/ElectricCard';
 import './styles.css';
@@ -86,8 +85,7 @@ export default function BlogListPageWrapper(props) {
             );
           })}
         </div>
-        <BlogListPaginator metadata={metadata} />
-      </div>
+              </div>
     </Layout>
   );
 }
