@@ -45,19 +45,26 @@ export default function BlogArchivePageContent(props: Props): JSX.Element {
     );
   }
 
-  // 按年份分组并排序
+  // 按年份和月份分组并排序
   const years = useMemo(() => {
-    const grouped: Record<string, BlogPost[]> = {};
+    const grouped: Record<string, Record<string, BlogPost[]>> = {};
     archive.blogPosts.forEach(post => {
-      const year = new Date(post.metadata.date).getFullYear().toString();
-      if (!grouped[year]) grouped[year] = [];
-      grouped[year].push(post);
+      const date = new Date(post.metadata.date);
+      const year = date.getFullYear().toString();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 01-12
+      
+      if (!grouped[year]) grouped[year] = {};
+      if (!grouped[year][month]) grouped[year][month] = [];
+      grouped[year][month].push(post);
     });
-    // 每年内按日期降序排序
+    
+    // 每月内按日期降序排序
     Object.keys(grouped).forEach(year => {
-      grouped[year].sort((a, b) => 
-        new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
-      );
+      Object.keys(grouped[year]).forEach(month => {
+        grouped[year][month].sort((a, b) => 
+          new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime()
+        );
+      });
     });
     return grouped;
   }, [archive.blogPosts]);
@@ -74,13 +81,18 @@ export default function BlogArchivePageContent(props: Props): JSX.Element {
           <span className={styles.archiveTotalCount}>{archive.blogPosts.length}</span>
         </div>
 
-        {/* 按年份分组的文章列表 */}
+        {/* 按年份和月份分组的文章列表 */}
         <div className={styles.archiveYearGroups}>
-          {sortedYears.map((year) => (
-            <div key={year} className={styles.archiveYearGroup}>
-              <h2 className={styles.archiveYearTitle}>{year}</h2>
-              <div className={styles.archivePostList}>
-                {years[year].map((post) => (
+          {sortedYears.map((year) => {
+            const sortedMonths = Object.keys(years[year]).sort((a, b) => Number(b) - Number(a));
+            return (
+              <div key={year} className={styles.archiveYearGroup}>
+                <h2 className={styles.archiveYearTitle}>{year}</h2>
+                {sortedMonths.map((month) => (
+                  <div key={`${year}-${month}`} className={styles.archiveMonthGroup}>
+                    <h3 className={styles.archiveMonthTitle}>{month}月</h3>
+                    <div className={styles.archivePostList}>
+                      {years[year][month].map((post) => (
                   <Link
                     key={post.metadata.permalink}
                     to={post.metadata.permalink}
@@ -118,10 +130,13 @@ export default function BlogArchivePageContent(props: Props): JSX.Element {
                       )}
                     </div>
                   </Link>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </main>
 

@@ -7,7 +7,7 @@
 
 .electric-card {
   height: 100%;
-  min-height: 280px;
+  min-height: 220px;
 }
 
 .electric-card-content {
@@ -18,7 +18,8 @@
 
 .electric-card-image {
   width: 100%;
-  height: 140px;
+  flex: 7; /* 图片占70% */
+  min-height: 120px;
   overflow: hidden;
   position: relative;
 }
@@ -42,19 +43,20 @@
 }
 
 .electric-card-body {
-  padding: 1rem;
-  flex: 1;
+  padding: 0.6rem 0.75rem;
+  flex: 3; /* 文字占30% */
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .electric-card-title {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin: 0 0 0.5rem 0;
-  line-height: 1.4;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: var(--ifm-heading-color);
@@ -65,21 +67,21 @@
 }
 
 .electric-card-description {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--ifm-color-emphasis-700);
-  margin: 0 0 0.75rem 0;
-  line-height: 1.5;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex: 1;
 }
 
 .electric-card-meta {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--ifm-color-emphasis-600);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .electric-card-date {
@@ -91,10 +93,7 @@
 }
 
 .electric-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: auto;
+  display: none; /* 隐藏标签以节省空间 */
 }
 
 .electric-card-tag {

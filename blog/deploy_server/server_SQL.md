@@ -1,7 +1,7 @@
 ---
-title: 欢迎
-difficulty: hard
-prerequisites: [javascript, html]
+title: 部署篇_数据库
+difficulty: middle
+prerequisites: []
 how:
   - 理解 WebRTC 实现原理
   - 掌握 ESP32 音频采集

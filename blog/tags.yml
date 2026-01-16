@@ -1,3 +1,13 @@
+update:
+  label: 更新日志
+  permalink: /update
+  description: 网站、应用、文档、笔记的更新日志等...
+
+learn:
+  label: 教程
+  permalink: /learn
+  description: 权威最好的教程
+
 facebook:
   label: Facebook
   permalink: /facebook

@@ -1,19 +1,28 @@
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import styles from './styles.module.css';
 
-// 预设的筛选选项
-const PRESET_FILTERS = [
-  { key: 'all', label: '全部', icon: null },
-  { key: 'recent', label: '最新', icon: null },
-  { key: 'random', label: '随机', icon: null },
+// 排序选项
+const SORT_OPTIONS = [
+  { key: 'newest', label: '最新' },
+  { key: 'oldest', label: '最旧' },
+  { key: 'longest', label: '字数最多' },
+  { key: 'shortest', label: '字数最少' },
+];
+
+// 难度筛选选项
+const DIFFICULTY_OPTIONS = [
+  { key: 'all', label: '全部' },
+  { key: 'easy', label: '简单' },
+  { key: 'middle', label: '进阶' },
+  { key: 'hard', label: '困难' },
 ];
 
 function BlogFilter({ posts, onFilter, tags = [] }) {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [sortBy, setSortBy] = useState('newest');
   const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedDifficulty, setSelectedDifficulty] = useState('all');
   const [showAllTags, setShowAllTags] = useState(false);
   const [filteredCount, setFilteredCount] = useState(posts.length);
-  const [randomSeed, setRandomSeed] = useState(Date.now());
 
   // 显示的标签数量
   const visibleTagCount = 8;
@@ -31,25 +40,34 @@ function BlogFilter({ posts, onFilter, tags = [] }) {
       );
     }
 
-    // 按预设筛选器处理
-    switch (activeFilter) {
-      case 'recent':
+    // 按难度筛选
+    if (selectedDifficulty !== 'all') {
+      result = result.filter(post => 
+        post.metadata.frontMatter?.difficulty === selectedDifficulty
+      );
+    }
+
+    // 排序处理
+    switch (sortBy) {
+      case 'newest':
         result.sort((a, b) => new Date(b.metadata.date) - new Date(a.metadata.date));
         break;
-      case 'random':
-        result = result
-          .map((post, index) => ({ post, sort: Math.sin(index + randomSeed) }))
-          .sort((a, b) => a.sort - b.sort)
-          .map(({ post }) => post);
+      case 'oldest':
+        result.sort((a, b) => new Date(a.metadata.date) - new Date(b.metadata.date));
         break;
-      case 'all':
+      case 'longest':
+        result.sort((a, b) => (b.metadata.readingTime || 0) - (a.metadata.readingTime || 0));
+        break;
+      case 'shortest':
+        result.sort((a, b) => (a.metadata.readingTime || 0) - (b.metadata.readingTime || 0));
+        break;
       default:
         result.sort((a, b) => new Date(b.metadata.date) - new Date(a.metadata.date));
         break;
     }
 
     return result;
-  }, [posts, selectedTag, activeFilter, randomSeed]);
+  }, [posts, selectedTag, selectedDifficulty, sortBy]);
 
   // 更新筛选结果
   useEffect(() => {
@@ -57,42 +75,55 @@ function BlogFilter({ posts, onFilter, tags = [] }) {
     onFilter(filteredPosts);
   }, [filteredPosts, onFilter]);
 
-  const handleFilterClick = useCallback((filterKey) => {
-    if (filterKey === 'random') {
-      setRandomSeed(Date.now());
-    }
-    setActiveFilter(filterKey);
-    setSelectedTag(null);
-  }, []);
-
   const handleTagClick = useCallback((tagLabel) => {
     if (selectedTag === tagLabel) {
       setSelectedTag(null);
     } else {
       setSelectedTag(tagLabel);
-      setActiveFilter('all');
     }
   }, [selectedTag]);
+
+  const handleClearAll = useCallback(() => {
+    setSelectedTag(null);
+    setSelectedDifficulty('all');
+    setSortBy('newest');
+  }, []);
 
   return (
     <div className={styles.filterBar}>
       <div className={styles.filterInner}>
-        {/* 预设筛选器 */}
-        <div className={styles.presetFilters}>
-          {PRESET_FILTERS.map(filter => (
+        {/* 排序选项 */}
+        <div className={styles.sortSection}>
+          {SORT_OPTIONS.map(option => (
             <button
-              key={filter.key}
-              onClick={() => handleFilterClick(filter.key)}
+              key={option.key}
+              onClick={() => setSortBy(option.key)}
               className={`${styles.filterBtn} ${
-                activeFilter === filter.key && !selectedTag ? styles.filterBtnActive : ''
+                sortBy === option.key ? styles.filterBtnActive : ''
               }`}
             >
-              {filter.label}
+              {option.label}
             </button>
           ))}
         </div>
 
-        {/* 分隔线 */}
+        <div className={styles.divider} />
+
+        {/* 难度筛选 */}
+        <div className={styles.difficultySection}>
+          {DIFFICULTY_OPTIONS.map(option => (
+            <button
+              key={option.key}
+              onClick={() => setSelectedDifficulty(option.key)}
+              className={`${styles.filterBtn} ${
+                selectedDifficulty === option.key ? styles.filterBtnActive : ''
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+
         <div className={styles.divider} />
 
         {/* 标签列表 */}
@@ -109,26 +140,28 @@ function BlogFilter({ posts, onFilter, tags = [] }) {
             </button>
           ))}
           
+          {/* 更多按钮 */}
           {hasMoreTags && (
             <button
               onClick={() => setShowAllTags(!showAllTags)}
               className={styles.moreBtn}
             >
-              {showAllTags ? '收起' : '更多'}
               <span className={styles.moreIcon}>{showAllTags ? '«' : '»'}</span>
+              {showAllTags ? '收起' : '更多'}
             </button>
           )}
         </div>
 
         {/* 筛选结果提示 */}
-        {selectedTag && (
+        {(selectedTag || selectedDifficulty !== 'all') && (
           <div className={styles.filterInfo}>
             <span className={styles.filterInfoText}>
               {filteredCount} 篇
             </span>
             <button 
-              onClick={() => setSelectedTag(null)} 
+              onClick={handleClearAll} 
               className={styles.clearBtn}
+              title="清除所有筛选"
             >
               ×
             </button>

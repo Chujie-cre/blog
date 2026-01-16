@@ -38,23 +38,14 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   border: 1px solid var(--ifm-color-emphasis-200);
   z-index: 1000;
-  animation: slideDown 0.2s ease;
   overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform, opacity;
 }
 
 [data-theme='dark'] .links-menu-dropdown {
   background: #1a1a1a;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .links-menu-header {
@@ -120,13 +111,20 @@
   border-radius: 10px;
   text-decoration: none;
   color: var(--ifm-font-color-base);
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease;
+  will-change: transform;
+  transform-origin: center center;
 }
 
 .links-menu-item:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
   text-decoration: none;
-  color: var(--ifm-color-primary);
+  color: white;
+}
+
+[data-theme='dark'] .links-menu-item:hover {
+  background: var(--ifm-color-primary);
+  color: black;
 }
 
 .links-menu-item-icon {

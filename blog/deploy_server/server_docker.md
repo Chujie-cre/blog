@@ -1,8 +1,8 @@
 ---
-id: esp32-webrtc-voice
-title: 使用 ESP32 + WebRTC 实现低延迟语音对讲
-description: ESP32 上实现 WebRTC 实时语音通信的完整工程实践
-slug: esp32-webrtc-voice
+id: deploy_docker
+title: 部署篇_Docker容器
+description: 教你如何部署docker在你的服务器上
+slug: deploy_docker
 date: 2026-01-13
 last_update:
   date: 2026-01-13

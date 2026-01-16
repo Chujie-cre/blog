@@ -1,25 +1,11 @@
 chujie:
   name: 雏结
   title: 创意新升级
-  url: https://linkedin.com/in/yangshun
+  url: https://pic.中国
   image_url: /me.png
   page: true
   socials:
-    youtube: yangshunz
-    x: yangshun
-    github: yangshun
-    newsletter: https://www.greatfrontend.com
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    youtube: 雏结
+    x: kingchujie
+    github: Chujie-cre
+    newsletter: https://me.pic.com

@@ -1,6 +1,7 @@
 import React, { useId } from 'react';
 import Link from '@docusaurus/Link';
 import {usePluginData} from '@docusaurus/useGlobalData';
+import { BookOpen, Target, FileEdit, Pencil } from 'lucide-react';
 import './styles.css';
 
 const DIFFICULTY_LEVELS = ['easy', 'middle', 'hard'];
@@ -108,7 +109,7 @@ export function HowSection({how}) {
   return (
     <div className="how-section">
       <div className="how-header">
-        <span className="how-icon">🎯</span>
+        <Target size={18} className="how-icon" />
         <span className="how-title">通过本文你将学到</span>
       </div>
       <ul className="how-list">
@@ -135,7 +136,7 @@ export function LastUpdateInfo({lastUpdate, editUrl}) {
   return (
     <div className="last-update-row">
       <div className="last-update-info">
-        <span className="last-update-icon">📝</span>
+        <FileEdit size={14} className="last-update-icon" />
         <span className="last-update-text">
           最后更新于 {formattedDate}
           {author && <span className="last-update-author"> · {author}</span>}
@@ -143,7 +144,7 @@ export function LastUpdateInfo({lastUpdate, editUrl}) {
       </div>
       {editUrl && (
         <Link to={editUrl} className="edit-page-link">
-          ✏️ 编辑此页
+          <Pencil size={14} /> 编辑此页
         </Link>
       )}
     </div>

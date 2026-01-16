@@ -4,13 +4,15 @@
   align-items: center;
   justify-content: center;
   overflow: visible;
+  isolation: isolate;
 }
 
 .eb-canvas-container {
   position: absolute;
   inset: -60px;
   pointer-events: none;
-  z-index: 1;
+  z-index: 10;
+  overflow: visible;
 }
 
 .eb-canvas {

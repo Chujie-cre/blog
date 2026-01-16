@@ -3,12 +3,13 @@ import './ElectricBorder.css';
 
 const ElectricBorder = ({
   children,
-  color = '#5227FF',
+  color = '#8B5CF6',
   speed = 1,
   chaos = 0.12,
   borderRadius = 24,
   className,
-  style
+  style,
+  rainbow = true
 }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
@@ -173,10 +174,20 @@ const ElectricBorder = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.scale(dpr, dpr);
 
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 1;
+      // 流光炫彩效果 - 根据时间改变颜色
+      const hue = (timeRef.current * 50) % 360;
+      const rainbowColor = rainbow 
+        ? `hsl(${hue}, 80%, 60%)` 
+        : color;
+      
+      ctx.strokeStyle = rainbowColor;
+      ctx.lineWidth = 2;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
+      
+      // 添加发光效果
+      ctx.shadowColor = rainbowColor;
+      ctx.shadowBlur = 15;
 
       const scale = displacement;
       const left = borderOffset;
@@ -251,7 +262,7 @@ const ElectricBorder = ({
       }
       resizeObserver.disconnect();
     };
-  }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
+  }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint, rainbow]);
 
   const vars = {
     '--electric-border-color': color,
