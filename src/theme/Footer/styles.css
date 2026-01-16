@@ -51,6 +51,7 @@
   width: 28px;
   height: 28px;
   object-fit: contain;
+  transition: filter 0.3s ease;
 }
 
 [data-theme='dark'] .footer-logo-img {
@@ -59,6 +60,14 @@
 
 .footer-logo:hover {
   color: var(--ifm-color-primary);
+}
+
+.footer-logo:hover .footer-logo-img {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(238deg) brightness(100%) contrast(119%);
+}
+
+[data-theme='dark'] .footer-logo:hover .footer-logo-img {
+  filter: invert(1) brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(238deg) brightness(100%) contrast(119%);
 }
 
 .footer-nav {
