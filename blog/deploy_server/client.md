@@ -1,7 +1,7 @@
 ---
-slug: first-blog-post
-title: 第一篇博客文章
-authors: [slorber]
+slug: deploy_client
+title: 部署篇_前端
+authors: [chujie]
 tags: [你好, docusaurus]
 difficulty: easy
 prerequisites: [html,css]
